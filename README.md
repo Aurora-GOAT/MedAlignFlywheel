@@ -1,5 +1,7 @@
 # MedAlignFlywheel
 
+> **招聘方快速阅读：[一页项目介绍](docs/one_pager.md)**｜[完整技术审计](docs/FINAL_AUDIT_REPORT.md)
+
 > 医疗多模态数据对齐 · 质量评估 · 高价值数据飞轮
 > 求职项目（目标岗位：蚂蚁集团 · 全模态大模型数据—蚂蚁健康）
 
@@ -176,6 +178,6 @@ python tests/run_validation.py               # 15 项全过 → reports/validati
 - 数据卡：`docs/data_card.md`
 - 模型卡：`docs/model_card.md`
 - 预注册协议：`docs/preregistration.md`
-- 一页中文介绍（含简历描述）：`docs/one_pager.md`
+- 招聘方一页介绍：[docs/one_pager.md](docs/one_pager.md)
 - 面试题与答案（34 题）：`docs/interview_qa.md`
 - 交互式报告页（含真实图像案例）：`reports/index.html`
