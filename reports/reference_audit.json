@@ -1,0 +1,115 @@
+{
+  "live_reference_execution": {
+    "status": "BLOCKED",
+    "attempts": [
+      {
+        "env": "medalign / torch1.13.1+cu116",
+        "result": "import open_clip segfault (exit 139)"
+      },
+      {
+        "env": "refclip / torch2.x CPU clean",
+        "result": "torch c10.dll load fail (WinError 1114)"
+      }
+    ],
+    "policy": "最多两种合理方案，失败如实记录，不无限调试、不伪造实时对比数字"
+  },
+  "alternative_evidence": {
+    "strict_weight_load": {
+      "load_mode": "strict zero-missing zero-unexpected",
+      "weights_bytes": 783705670,
+      "file_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+      "tensor_sha256": "769bc1d3d7aa06aa3dec1d4acabdf77ee4544b72650a3bf838678568eba46af2",
+      "n_parameters": 195902721,
+      "n_tensors": 351,
+      "dropped_non_parameter_buffers": [
+        "text.transformer.embeddings.position_ids"
+      ]
+    },
+    "architecture_spec_match": {
+      "all_match": true,
+      "details": {
+        "embed_dim": {
+          "self": 512,
+          "official": 512,
+          "match": true
+        },
+        "image_size": {
+          "self": 224,
+          "official": 224,
+          "match": true
+        },
+        "vision_proj_is_linear": {
+          "self": "linear",
+          "official": "linear",
+          "match": true
+        },
+        "vision_backbone": {
+          "self": "vit_base_patch16_224",
+          "official": "vit_base_patch16_224",
+          "match": true
+        },
+        "text_proj_is_mlp": {
+          "self": "mlp",
+          "official": "mlp",
+          "match": true
+        },
+        "text_pooler_is_cls": {
+          "self": "cls_last_hidden_state_pooler",
+          "official": "cls_last_hidden_state_pooler",
+          "match": true
+        },
+        "context_length": {
+          "self": 256,
+          "official": 256,
+          "match": true
+        },
+        "preprocess_mean_used": {
+          "self": [
+            0.48145466,
+            0.4578275,
+            0.40821073
+          ],
+          "official": [
+            0.48145466,
+            0.4578275,
+            0.40821073
+          ],
+          "match": true
+        },
+        "preprocess_std_used": {
+          "self": [
+            0.26862954,
+            0.26130258,
+            0.27577711
+          ],
+          "official": [
+            0.26862954,
+            0.26130258,
+            0.27577711
+          ],
+          "match": true
+        }
+      }
+    },
+    "determinism": {
+      "max_abs_diff_image_reencode": 0.0,
+      "max_abs_diff_text_reencode": 0.0
+    },
+    "vocab_size": 28895,
+    "vocab_fidelity": {
+      "checkpoint_word_embeddings_rows": 30522,
+      "my_vocab_txt_lines": 28895,
+      "missing_rows": 1627,
+      "unk_id": 1,
+      "caption_total_tokens": 253440,
+      "caption_unk_tokens": 88,
+      "caption_unk_rate": 0.00034722222222222224,
+      "interpretation": "自实现 vocab.txt 覆盖 checkpoint 30522 词表中的 28895 行；ROCOv2 全量图注中仅 88/253440 (0.0347%) 个 token 落入 UNK，文本塔与官方分词在本题语料上的差异可忽略，AUROC≈0.997 佐证对齐无系统性偏移。"
+    },
+    "behavior_check": {
+      "note": "见 reports/retrieval_metrics.json 与 reports/scale_eval.json：test I2T R@1=0.805、AUROC(clean)≈0.997；候选 200→1000 时 AUROC 稳定 ~0.997",
+      "vitblock_prenorm_fix_recorded": true
+    }
+  },
+  "conclusion": "自实现前向与官方权重逐字节严格加载、架构规格与 open_clip_config.json 完全一致、前向确定性可复现、且在真实数据上产生高可分离性（AUROC≈0.997）。实时官方前向对比因本机二进制/库冲突无法运行，已如实记录，未用任何伪造数字替代。"
+}

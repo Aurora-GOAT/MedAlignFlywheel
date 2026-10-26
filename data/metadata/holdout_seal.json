@@ -1,0 +1,37 @@
+{
+  "sealed_at_utc": "2026-10-26T12:04:43.981471+00:00",
+  "rule": "SHA1(sample_id) mod 10 == 0 over sorted train ids (~10%)",
+  "n_holdout": 55,
+  "n_train_total": 592,
+  "excluded_from": [
+    "hyperparameter_search",
+    "data_selection",
+    "adapter_training",
+    "any_tuning"
+  ],
+  "open_policy": "only opened once for final verification; opening action is logged separately",
+  "id_list_sha256": "77a0759dc8ece23ab2c5e2d02f3d578d2b4d25c5e0fea0157f4564409423b878",
+  "holdout_embeddings_sha256": "a49d90237090ebaf47a5cbe05eb77cc4e983eb56f0835a4f282fe0f9323611b1",
+  "holdout_ids_sample_first20": [
+    "ROCOv2_2023_train_001090",
+    "ROCOv2_2023_train_001092",
+    "ROCOv2_2023_train_001094",
+    "ROCOv2_2023_train_005539",
+    "ROCOv2_2023_train_006071",
+    "ROCOv2_2023_train_006072",
+    "ROCOv2_2023_train_009650",
+    "ROCOv2_2023_train_009655",
+    "ROCOv2_2023_train_012511",
+    "ROCOv2_2023_train_012513",
+    "ROCOv2_2023_train_012516",
+    "ROCOv2_2023_train_012532",
+    "ROCOv2_2023_train_012534",
+    "ROCOv2_2023_train_017424",
+    "ROCOv2_2023_train_018354",
+    "ROCOv2_2023_train_018357",
+    "ROCOv2_2023_train_022015",
+    "ROCOv2_2023_train_022018",
+    "ROCOv2_2023_train_022019",
+    "ROCOv2_2023_train_024258"
+  ]
+}

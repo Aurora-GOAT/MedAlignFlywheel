@@ -1,0 +1,225 @@
+{
+  "generated_at_utc": "2026-10-25T21:38:23.386281+00:00",
+  "budget": 200,
+  "seed": 20260701,
+  "hard_mining": {
+    "train": {
+      "n_cases": 178,
+      "by_kind": {
+        "risk_false_positive": 166,
+        "hard_positive": 12
+      },
+      "by_modality_proxy": {
+        "unknown": 75,
+        "computed-tomography": 41,
+        "x-ray": 27,
+        "magnetic-resonance": 20,
+        "ultrasound": 11,
+        "nuclear-medicine": 2,
+        "histopathology": 1,
+        "photograph-clinical": 1
+      },
+      "version": "hard-mining-v1.0",
+      "review_status": "全部未复核：review 字段为空，不得据此宣称存在数据缺陷"
+    },
+    "validation": {
+      "n_cases": 51,
+      "by_kind": {
+        "risk_false_positive": 48,
+        "hard_positive": 3
+      },
+      "by_modality_proxy": {
+        "computed-tomography": 14,
+        "x-ray": 13,
+        "unknown": 11,
+        "magnetic-resonance": 7,
+        "ultrasound": 4,
+        "multimodal-fusion": 1,
+        "nuclear-medicine": 1
+      },
+      "version": "hard-mining-v1.0",
+      "review_status": "全部未复核：review 字段为空，不得据此宣称存在数据缺陷"
+    }
+  },
+  "hard_negatives": {
+    "train": {
+      "n_candidates": 3549,
+      "n_confident_negative": 913,
+      "n_hard": 2959,
+      "confident_ratio": 0.2573,
+      "needs_review_reasons": {
+        "shared_medical_concept": 2605,
+        "caption_overlap_too_high": 180,
+        "near_duplicate_image_or_similar_source": 2
+      },
+      "version": "negatives-v1.0"
+    },
+    "validation": {
+      "n_candidates": 1187,
+      "n_confident_negative": 305,
+      "n_hard": 977,
+      "confident_ratio": 0.257,
+      "needs_review_reasons": {
+        "shared_medical_concept": 880,
+        "caption_overlap_too_high": 35
+      },
+      "version": "negatives-v1.0"
+    }
+  },
+  "selection": {
+    "table": {
+      "A_random": {
+        "n_selected": 200,
+        "n_distinct_modality": 8,
+        "modality_counts": {
+          "unknown": 67,
+          "computed-tomography": 64,
+          "x-ray": 32,
+          "magnetic-resonance": 22,
+          "ultrasound": 10,
+          "nuclear-medicine": 3,
+          "photograph-clinical": 1,
+          "multimodal-fusion": 1
+        },
+        "n_distinct_region": 7,
+        "region_counts": {
+          "unknown": 53,
+          "chest": 45,
+          "abdomen": 42,
+          "extremity-vascular": 25,
+          "head-neck": 15
+        },
+        "n_distinct_cui": 18,
+        "top_cui": {
+          "C0040405": 68,
+          "C1306645": 53,
+          "C0024485": 32,
+          "C1999039": 26,
+          "C0041618": 24
+        },
+        "caption_tokens_mean": 21.39,
+        "near_dup_ratio": 0.02,
+        "n_hard_samples": 53,
+        "strategy": "A_random",
+        "budget": 200,
+        "seed": 20260701
+      },
+      "B_quality": {
+        "n_selected": 200,
+        "n_distinct_modality": 8,
+        "modality_counts": {
+          "unknown": 67,
+          "computed-tomography": 64,
+          "x-ray": 32,
+          "magnetic-resonance": 22,
+          "ultrasound": 10,
+          "nuclear-medicine": 3,
+          "photograph-clinical": 1,
+          "multimodal-fusion": 1
+        },
+        "n_distinct_region": 7,
+        "region_counts": {
+          "unknown": 53,
+          "chest": 45,
+          "abdomen": 42,
+          "extremity-vascular": 25,
+          "head-neck": 15
+        },
+        "n_distinct_cui": 18,
+        "top_cui": {
+          "C0040405": 68,
+          "C1306645": 53,
+          "C0024485": 32,
+          "C1999039": 26,
+          "C0041618": 24
+        },
+        "caption_tokens_mean": 21.39,
+        "near_dup_ratio": 0.02,
+        "n_hard_samples": 53,
+        "strategy": "B_quality",
+        "budget": 200,
+        "seed": 20260701
+      },
+      "C_quality_hard": {
+        "n_selected": 200,
+        "n_distinct_modality": 8,
+        "modality_counts": {
+          "unknown": 75,
+          "computed-tomography": 50,
+          "x-ray": 34,
+          "magnetic-resonance": 25,
+          "ultrasound": 11,
+          "histopathology": 2,
+          "nuclear-medicine": 2,
+          "photograph-clinical": 1
+        },
+        "n_distinct_region": 7,
+        "region_counts": {
+          "unknown": 68,
+          "chest": 49,
+          "abdomen": 39,
+          "extremity-vascular": 20,
+          "musculoskeletal": 9
+        },
+        "n_distinct_cui": 17,
+        "top_cui": {
+          "C0040405": 60,
+          "C1306645": 60,
+          "C0024485": 35,
+          "C1999039": 32,
+          "C0041618": 27
+        },
+        "caption_tokens_mean": 18.11,
+        "near_dup_ratio": 0.04,
+        "n_hard_samples": 166,
+        "strategy": "C_quality_hard",
+        "budget": 200,
+        "seed": 20260701
+      },
+      "D_quality_longtail": {
+        "n_selected": 200,
+        "n_distinct_modality": 6,
+        "modality_counts": {
+          "unknown": 95,
+          "x-ray": 89,
+          "computed-tomography": 10,
+          "nuclear-medicine": 4,
+          "multimodal-fusion": 1,
+          "photograph-clinical": 1
+        },
+        "n_distinct_region": 7,
+        "region_counts": {
+          "unknown": 59,
+          "chest": 39,
+          "extremity-vascular": 39,
+          "abdomen": 31,
+          "musculoskeletal": 21
+        },
+        "n_distinct_cui": 15,
+        "top_cui": {
+          "C1306645": 139,
+          "C1999039": 60,
+          "C0002978": 51,
+          "C0817096": 43,
+          "C1996865": 34
+        },
+        "caption_tokens_mean": 18.95,
+        "near_dup_ratio": 0.035,
+        "n_hard_samples": 61,
+        "strategy": "D_quality_longtail",
+        "budget": 200,
+        "seed": 20260701
+      }
+    },
+    "pairwise_jaccard": {
+      "A_random__vs__B_quality": 1.0,
+      "A_random__vs__C_quality_hard": 0.1976,
+      "A_random__vs__D_quality_longtail": 0.2195,
+      "B_quality__vs__C_quality_hard": 0.1976,
+      "B_quality__vs__D_quality_longtail": 0.2195,
+      "C_quality_hard__vs__D_quality_longtail": 0.2158
+    },
+    "note": "这些是数据选择策略的**数据侧**描述；是否带来模型指标差异必须由 P4 的对照训练给出，不能从这里推断。"
+  },
+  "note": "本结果来自已修正的 BiomedCLIP 前向（ViTBlock 预归一化顺序已修正），test 冻结集不参与任何挖掘/选择/调参。"
+}

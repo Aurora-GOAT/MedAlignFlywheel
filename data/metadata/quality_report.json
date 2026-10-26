@@ -1,0 +1,73 @@
+{
+  "generated_at_utc": "2026-10-25T20:13:06.872860+00:00",
+  "pipeline_version": "medalign-quality-pipeline-v1.1",
+  "n_total": 1000,
+  "n_keep": 990,
+  "n_reject": 10,
+  "keep_rate": 0.99,
+  "by_split_total": {
+    "train": 600,
+    "validation": 200,
+    "test": 200
+  },
+  "by_split_keep": {
+    "train": 592,
+    "validation": 198,
+    "test": 200
+  },
+  "by_split_reject": {
+    "train": 8,
+    "validation": 2
+  },
+  "reject_code_counts": {
+    "CAPTION_TOO_SHORT": 6,
+    "DUP_NEAR_IMAGE": 4
+  },
+  "warn_code_counts": {
+    "CAPTION_SHORT": 44,
+    "NEAR_CAPTION_SIMILAR": 18,
+    "CONCEPT_INVALID_FORMAT": 14,
+    "CAPTION_REPETITIVE": 6,
+    "CROSS_SPLIT_CAPTION_SIMILAR": 6,
+    "DUP_KEEPER_NEAR_IMAGE": 3
+  },
+  "duplicate_clusters": {
+    "n_total": 15,
+    "n_cross_split": 3,
+    "by_kind": {
+      "near-image": 3,
+      "near-caption": 12
+    }
+  },
+  "modality_proxy_total": {
+    "unknown": 309,
+    "computed-tomography": 302,
+    "x-ray": 181,
+    "magnetic-resonance": 120,
+    "ultrasound": 67,
+    "nuclear-medicine": 8,
+    "photograph-clinical": 5,
+    "histopathology": 4,
+    "multimodal-fusion": 3,
+    "graphic-chart": 1
+  },
+  "modality_proxy_keep": {
+    "computed-tomography": 301,
+    "unknown": 300,
+    "x-ray": 181,
+    "magnetic-resonance": 120,
+    "ultrasound": 67,
+    "nuclear-medicine": 8,
+    "photograph-clinical": 5,
+    "histopathology": 4,
+    "multimodal-fusion": 3,
+    "graphic-chart": 1
+  },
+  "modality_disclaimer": "模态标签由本项目规则从图注推断，ROCOv2 的 HF 版本未提供官方 modality 字段；该标签是数据质量代理指标，不是医学影像分类真值。",
+  "cui_stats": {
+    "n_samples_with_cui": 1000,
+    "n_samples_without_cui": 0,
+    "n_unique_cui": 18,
+    "n_singleton_cui": 1
+  }
+}

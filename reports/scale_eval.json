@@ -1,0 +1,115 @@
+{
+  "config": {
+    "ks": [
+      1,
+      5,
+      10
+    ],
+    "seed": 20260701,
+    "scales": [
+      200,
+      500,
+      1000
+    ]
+  },
+  "200": {
+    "n_queries": 200,
+    "n_candidates": 200,
+    "i2t": {
+      "recall@1": 0.805,
+      "recall@5": 0.965,
+      "recall@10": 0.99,
+      "mrr": 0.8726579457364341,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.805,
+        "lo": 0.745,
+        "hi": 0.865
+      }
+    },
+    "t2i": {
+      "recall@1": 0.81,
+      "recall@5": 0.975,
+      "recall@10": 0.99,
+      "mrr": 0.878989706471649,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.81,
+        "lo": 0.755,
+        "hi": 0.87
+      }
+    },
+    "auroc_all_offdiag": 0.9947184045226131
+  },
+  "500": {
+    "n_queries": 200,
+    "n_candidates": 500,
+    "i2t": {
+      "recall@1": 0.665,
+      "recall@5": 0.935,
+      "recall@10": 0.96,
+      "mrr": 0.7831208006745399,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.665,
+        "lo": 0.595,
+        "hi": 0.735
+      }
+    },
+    "t2i": {
+      "recall@1": 0.68,
+      "recall@5": 0.94,
+      "recall@10": 0.975,
+      "mrr": 0.7930297116308558,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.68,
+        "lo": 0.615,
+        "hi": 0.745
+      }
+    },
+    "auroc_all_offdiag": 0.9963625
+  },
+  "1000": {
+    "n_queries": 200,
+    "n_candidates": 990,
+    "i2t": {
+      "recall@1": 0.59,
+      "recall@5": 0.87,
+      "recall@10": 0.935,
+      "mrr": 0.7168190548269838,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.59,
+        "lo": 0.52,
+        "hi": 0.66
+      }
+    },
+    "t2i": {
+      "recall@1": 0.6,
+      "recall@5": 0.895,
+      "recall@10": 0.94,
+      "mrr": 0.7294252501088954,
+      "median_rank": 1.0,
+      "recall@1_ci95": {
+        "point": 0.6,
+        "lo": 0.53,
+        "hi": 0.665
+      }
+    },
+    "auroc_all_offdiag": 0.996887146107179
+  },
+  "leakage_test_only": {
+    "pool": "test-only (200)",
+    "hamming_threshold": 10,
+    "containment_threshold": 0.6,
+    "n_near_dup_image_pairs": 2,
+    "n_near_identical_caption_pairs": 27,
+    "n_confusable_queries": 36,
+    "n_clean_queries": 164,
+    "r1_full": 0.805,
+    "r1_confusable_subset": 0.7777777777777778,
+    "r1_clean_subset": 0.8109756097560976,
+    "interpretation": "若 r1_clean 与 r1_full 接近，说明近重复/相似图注对 R@1 的提升很小，80.5% 主要来自模型本身的跨模态对齐能力，而非任务被人为变易。"
+  }
+}

@@ -1,0 +1,4 @@
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 6 files:  17%|█▋        | 1/6 [00:27<02:15, 27.19s/it]Fetching 6 files:  50%|█████     | 3/6 [00:30<00:25,  8.43s/it]Fetching 6 files:  67%|██████▋   | 4/6 [00:47<00:22, 11.38s/it]Fetching 6 files:  83%|████████▎ | 5/6 [00:49<00:08,  8.30s/it]Fetching 6 files: 100%|██████████| 6/6 [06:58<00:00, 123.76s/it]Fetching 6 files: 100%|██████████| 6/6 [06:58<00:00, 69.67s/it] 
+[OK] snapshot -> D:\PQY\Five\post\实习、工作\找工作\简历合集\蚂蚁\MedAlignFlywheel\data\external\models\biomedclip
+[OK] elapsed  -> 419.3s

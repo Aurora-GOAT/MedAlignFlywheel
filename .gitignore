@@ -1,0 +1,29 @@
+# 大文件 / 权重 / 原始图像（不入库，仅本地评估用）
+data/raw/images/
+data/external/models/biomedclip/*.bin
+data/cache/
+*.npz
+*.bin
+
+# 日志与临时
+*.log
+p4_diag.log
+p2_syn.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+envs/
+*.egg-info/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 实验过程产物（保留报告 JSON / HTML 入库；以下为中间缓存）
+data/metadata/_synthetic/
+
+# 第二轮：独立测试集原始图像（不入库，仅本地评估）
+data/raw/images_holdoutv2/
+fetch_v2.log

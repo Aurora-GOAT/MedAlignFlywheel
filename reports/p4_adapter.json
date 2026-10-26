@@ -1,0 +1,141 @@
+{
+  "generated_at_utc": "2026-10-25T21:44:22.980209+00:00",
+  "seed": 20260701,
+  "adapter_config": {
+    "hidden": 256,
+    "steps": 400,
+    "lr": 0.001,
+    "batch_size": 64,
+    "temperature_init": 20.0
+  },
+  "disclaimer": "冻结 BiomedCLIP 编码器已在本任务上接近天花板（test I2T R@1≈0.81）。仅训 200 样本小对齐头对数据选择策略的区分力有限；本实验如实报告，不夸大差异。",
+  "baseline": {
+    "i2t": {
+      "recall@1": 0.805,
+      "recall@5": 0.965,
+      "recall@10": 0.99,
+      "mrr": 0.8726579457364341
+    },
+    "t2i": {
+      "recall@1": 0.81,
+      "recall@5": 0.975,
+      "recall@10": 0.99,
+      "mrr": 0.878989706471649
+    },
+    "note": "直接使用原始 BiomedCLIP 向量的冻结基线"
+  },
+  "strategies": {
+    "A_random": {
+      "n_train_used": 200,
+      "adapter_train_log": {
+        "n_train": 200,
+        "steps": 400,
+        "batch_size": 64,
+        "n_parameters": 525824,
+        "loss_first": 0.7541656494140625,
+        "loss_last": 0.23624518513679504,
+        "loss_mean_last50": 0.21190252184867858,
+        "device": "cuda"
+      },
+      "temperature": 21.8296,
+      "i2t": {
+        "recall@1": 0.57,
+        "recall@5": 0.895,
+        "recall@10": 0.955,
+        "mrr": 0.6962351588911944,
+        "median_rank": 1.0
+      },
+      "t2i": {
+        "recall@1": 0.595,
+        "recall@5": 0.87,
+        "recall@10": 0.97,
+        "mrr": 0.7149427655677656,
+        "median_rank": 1.0
+      }
+    },
+    "B_quality": {
+      "n_train_used": 200,
+      "adapter_train_log": {
+        "n_train": 200,
+        "steps": 400,
+        "batch_size": 64,
+        "n_parameters": 525824,
+        "loss_first": 0.7541656494140625,
+        "loss_last": 0.23624518513679504,
+        "loss_mean_last50": 0.21190252184867858,
+        "device": "cuda"
+      },
+      "temperature": 21.8296,
+      "i2t": {
+        "recall@1": 0.57,
+        "recall@5": 0.895,
+        "recall@10": 0.955,
+        "mrr": 0.6962351588911944,
+        "median_rank": 1.0
+      },
+      "t2i": {
+        "recall@1": 0.595,
+        "recall@5": 0.87,
+        "recall@10": 0.97,
+        "mrr": 0.7149427655677656,
+        "median_rank": 1.0
+      }
+    },
+    "C_quality_hard": {
+      "n_train_used": 200,
+      "adapter_train_log": {
+        "n_train": 200,
+        "steps": 400,
+        "batch_size": 64,
+        "n_parameters": 525824,
+        "loss_first": 1.0430290699005127,
+        "loss_last": 0.22675122320652008,
+        "loss_mean_last50": 0.20646408662199975,
+        "device": "cuda"
+      },
+      "temperature": 22.1636,
+      "i2t": {
+        "recall@1": 0.48,
+        "recall@5": 0.76,
+        "recall@10": 0.87,
+        "mrr": 0.611328593056335,
+        "median_rank": 2.0
+      },
+      "t2i": {
+        "recall@1": 0.455,
+        "recall@5": 0.785,
+        "recall@10": 0.87,
+        "mrr": 0.6002881946469907,
+        "median_rank": 2.0
+      }
+    },
+    "D_quality_longtail": {
+      "n_train_used": 200,
+      "adapter_train_log": {
+        "n_train": 200,
+        "steps": 400,
+        "batch_size": 64,
+        "n_parameters": 525824,
+        "loss_first": 1.1216042041778564,
+        "loss_last": 0.22664305567741394,
+        "loss_mean_last50": 0.20654891476035117,
+        "device": "cuda"
+      },
+      "temperature": 21.936,
+      "i2t": {
+        "recall@1": 0.51,
+        "recall@5": 0.845,
+        "recall@10": 0.9,
+        "mrr": 0.6437064697569076,
+        "median_rank": 1.0
+      },
+      "t2i": {
+        "recall@1": 0.54,
+        "recall@5": 0.815,
+        "recall@10": 0.9,
+        "mrr": 0.6620332475661533,
+        "median_rank": 1.0
+      }
+    }
+  }
+}

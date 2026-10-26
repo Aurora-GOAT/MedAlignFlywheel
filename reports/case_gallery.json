@@ -1,0 +1,333 @@
+{
+  "correct": {
+    "sample_id": "ROCOv2_2023_test_000537",
+    "query_img": "../assets/thumbnails/ROCOv2_2023_test_000537.jpg",
+    "split": "test",
+    "candidate_pool_size": 200,
+    "caption": "Chest X-ray of an 8-month-old infant with congenital pulmonary malformations. N.B: The date on the CXR is according to Ethiopian calendar.",
+    "correct_text_rank": 1,
+    "i2t_top5": [
+      {
+        "id": "ROCOv2_2023_test_007953",
+        "sim": 0.434,
+        "is_correct": false,
+        "caption": "Repeat chest X-ray reveals expanded lung field with no collapse",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_007953.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_003974",
+        "sim": 0.4276,
+        "is_correct": false,
+        "caption": "Chest X‐ray showing left pneumothorax",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_003974.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_003980",
+        "sim": 0.4178,
+        "is_correct": false,
+        "caption": "X-ray of the chest: an area of dense opacification in the right apical region; extensive bilateral upper lung bullous changes",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_003980.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_000537",
+        "sim": 0.4115,
+        "is_correct": true,
+        "caption": "Chest X-ray of an 8-month-old infant with congenital pulmonary malformations. N.B: The date on the CXR is according to Ethiopian calendar.",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_000537.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_006379",
+        "sim": 0.3901,
+        "is_correct": false,
+        "caption": "Chest X-ray: left lateral view.",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_006379.jpg"
+      }
+    ],
+    "t2i_top5": [
+      {
+        "id": "ROCOv2_2023_test_000537",
+        "sim": 1.0,
+        "is_correct": true,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_000537.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_008821",
+        "sim": 0.7836,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_008821.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_006172",
+        "sim": 0.7412,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_006172.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_001283",
+        "sim": 0.7342,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_001283.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_001263",
+        "sim": 0.727,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_001263.jpg"
+      }
+    ],
+    "note": "查询图像与正确图注在候选集中排名第 1（I2T/T2I 双方向），体现 BiomedCLIP 在医学图文上的强对齐。"
+  },
+  "failed": {
+    "sample_id": "ROCOv2_2023_train_005533",
+    "query_img": "../assets/thumbnails/ROCOv2_2023_train_005533.jpg",
+    "split": "train",
+    "candidate_pool_size": 592,
+    "caption": "Intravenous Urogram showing crossed fused renal ectopia.",
+    "correct_text_rank": 43,
+    "i2t_top5": [
+      {
+        "id": "ROCOv2_2023_train_005545",
+        "sim": 0.4485,
+        "is_correct": false,
+        "caption": "Ureteral duplication: Frontal radiograph from an intravenous urogram study shows bilateral complete ureteral duplication. The opening of the",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_005545.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_009643",
+        "sim": 0.4448,
+        "is_correct": false,
+        "caption": "Successful decompression confirmed by abdominal radiograph on day 4.",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_009643.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_022016",
+        "sim": 0.4447,
+        "is_correct": false,
+        "caption": "X-ray of abdomen, performed on 05 December 2008, revealed multiple calculi in urinary bladder.",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_022016.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_022035",
+        "sim": 0.4446,
+        "is_correct": false,
+        "caption": "Bilateral ureteral tuberculosis and involvement of the bladder. At excretory urography, irregular distal ureteral stenoses are observed in a",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_022035.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_040093",
+        "sim": 0.4382,
+        "is_correct": false,
+        "caption": "Vascular calcification in an abdominal radiograph.",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_040093.jpg"
+      }
+    ],
+    "t2i_top5": [
+      {
+        "id": "ROCOv2_2023_train_005533",
+        "sim": 1.0,
+        "is_correct": true,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_005533.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_005545",
+        "sim": 0.8513,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_005545.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_038326",
+        "sim": 0.8292,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_038326.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_038325",
+        "sim": 0.8216,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_038325.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_022035",
+        "sim": 0.8183,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_022035.jpg"
+      }
+    ],
+    "rival_caption": "Ureteral duplication: Frontal radiograph from an intravenous urogram study shows bilateral complete ureteral duplication. The opening of the",
+    "rival_sim": 0.4485,
+    "positive_sim": 0.4283,
+    "margin": -0.0203,
+    "note": "正确图注在候选集中仅排第 43 名；一个高相似负例（rival）被排在更前，属于已挖掘的 229 条困难样本之一。这类样本是数据飞轮优先回填的候选，但须经人工复核确认是否为真正错配，而非模型合理歧义。"
+  },
+  "quality": {
+    "sample_id": "ROCOv2_2023_test_000552",
+    "query_img": "../assets/thumbnails/ROCOv2_2023_test_000552.jpg",
+    "split": "test",
+    "candidate_pool_size": 200,
+    "caption": "X-ray findings.",
+    "correct_text_rank": 16,
+    "i2t_top5": [
+      {
+        "id": "ROCOv2_2023_test_008805",
+        "sim": 0.4061,
+        "is_correct": false,
+        "caption": "Chest X-ray demonstrating placement of the four chest drains.",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_008805.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_003974",
+        "sim": 0.4058,
+        "is_correct": false,
+        "caption": "Chest X‐ray showing left pneumothorax",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_003974.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_007953",
+        "sim": 0.4006,
+        "is_correct": false,
+        "caption": "Repeat chest X-ray reveals expanded lung field with no collapse",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_007953.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_006177",
+        "sim": 0.3797,
+        "is_correct": false,
+        "caption": "Post-intubation, increased abdominal distension.",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_006177.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_001263",
+        "sim": 0.3763,
+        "is_correct": false,
+        "caption": "Chest x- ray (PA view) Chest x-ray showed right side lower zone evolving consolidation, extending to periphery and perihilar regions.",
+        "img": "../assets/thumbnails/ROCOv2_2023_test_001263.jpg"
+      }
+    ],
+    "t2i_top5": [
+      {
+        "id": "ROCOv2_2023_test_000552",
+        "sim": 1.0,
+        "is_correct": true,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_000552.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_006172",
+        "sim": 0.7351,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_006172.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_003989",
+        "sim": 0.6775,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_003989.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_000537",
+        "sim": 0.6731,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_000537.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_test_006384",
+        "sim": 0.672,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_test_006384.jpg"
+      }
+    ],
+    "warn_codes": [
+      "CAPTION_SHORT"
+    ],
+    "reject_codes": [],
+    "note": "该样本被质量算子标记为 ['CAPTION_SHORT']。在 P1 流水线中此类样本会被记录告警/拒绝并附带原因，保证进入训练的数据具备可追溯的血缘。合成缺陷测试显示算子对缺失/空/占位/重复图像等缺陷的自动识别率为 5/5 且无假阳性。"
+  },
+  "ambiguity": {
+    "sample_id": "ROCOv2_2023_train_001071",
+    "query_img": "../assets/thumbnails/ROCOv2_2023_train_001071.jpg",
+    "split": "train",
+    "candidate_pool_size": 592,
+    "caption": "Right vertebral artery deviation",
+    "correct_text_rank": 2,
+    "i2t_top5": [
+      {
+        "id": "ROCOv2_2023_train_001070",
+        "sim": 0.4877,
+        "is_correct": false,
+        "caption": "Right middle cerebral artery (MCA) M1 segment diameter",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_001070.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_001071",
+        "sim": 0.4739,
+        "is_correct": true,
+        "caption": "Right vertebral artery deviation",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_001071.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_031727",
+        "sim": 0.4571,
+        "is_correct": false,
+        "caption": "Scheduled follow-up CTA at 4 months redemonstrates the left supraclinoid aneurysm with significant increase in contrast filling compared to ",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_031727.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_042782",
+        "sim": 0.4185,
+        "is_correct": false,
+        "caption": "CT angiogram with no thrombus after 1 week of treatment.",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_042782.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_059539",
+        "sim": 0.3982,
+        "is_correct": false,
+        "caption": "Anterior-posterior view of cerebral angiographic (DSA) image demonstrating an 8 mm right M3-MCA fusiform aneurysm and a 4 mm M2-MCA saccular",
+        "img": "../assets/thumbnails/ROCOv2_2023_train_059539.jpg"
+      }
+    ],
+    "t2i_top5": [
+      {
+        "id": "ROCOv2_2023_train_001071",
+        "sim": 1.0,
+        "is_correct": true,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_001071.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_001070",
+        "sim": 0.8019,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_001070.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_059531",
+        "sim": 0.7544,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_059531.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_024251",
+        "sim": 0.7531,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_024251.jpg"
+      },
+      {
+        "id": "ROCOv2_2023_train_012534",
+        "sim": 0.7452,
+        "is_correct": false,
+        "img": "../assets/thumbnails/ROCOv2_2023_train_012534.jpg"
+      }
+    ],
+    "rival_caption": "Right middle cerebral artery (MCA) M1 segment diameter",
+    "rival_sim": 0.4877,
+    "positive_sim": 0.4739,
+    "ambiguity_excluded": false,
+    "concept_group": "has_shared_concept",
+    "note": "查询与 rival 共享同一医学概念（共享概念干扰），模型难以区分。此类'图文配对歧义'样本在飞轮中被显式排除（ambiguity_excluded）并标注需人工审核，避免把合理歧义误当错误。未人工确认前不计入确定错配。"
+  },
+  "license": {
+    "dataset": "ROCOv2 (radiology)",
+    "source": "Hugging Face eltorio/ROCOv2-radiology (DOI 10.57967/hf/3489)",
+    "license": "CC BY-NC-SA 4.0",
+    "usage_note": "缩略图仅用于非商业求职作品集展示；如需公开发布请确认许可与署名要求。"
+  }
+}

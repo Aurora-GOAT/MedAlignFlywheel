@@ -1,0 +1,122 @@
+{
+  "generated_at_utc": "2026-10-26T18:06:53.775536+00:00",
+  "model": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+  "verified": {
+    "V1_vocab_file_byte_identical": {
+      "local_sha256": "7b36651908a88bc38bda41b728b2a598191e0d3b553cbacf7b1e5f026d5b5b9f",
+      "official_sha256": "7b36651908a88bc38bda41b728b2a598191e0d3b553cbacf7b1e5f026d5b5b9f",
+      "identical": true,
+      "n_lines": 28895
+    },
+    "V2_tokenizer_json_ordering": {
+      "tokenizer_json_vocab_size": 28895,
+      "vocab_txt_size": 28895,
+      "n_ordering_mismatch": 0,
+      "identical": true
+    },
+    "V3_special_token_ids": {
+      "PAD": 0,
+      "UNK": 1,
+      "CLS": 2,
+      "SEP": 3,
+      "MASK": 4,
+      "note": "与官方 tokenizer.json 中的 ID 一致（见 V2）"
+    },
+    "V4_lowercasing": {
+      "official_do_lower_case": true,
+      "implementation_do_lower_case": true,
+      "match": true
+    },
+    "V5_hf_tokenizer_behaviours_on_this_corpus": {
+      "n_captions": 990,
+      "n_with_cjk_chars": 0,
+      "n_token_ids_changed_by_accent_stripping": 1,
+      "conclusion": "中文切分对本语料 0 影响；去重音仅影响 1/990 条（约 0.1%），对聚合检索指标的影响可忽略但严格存在。"
+    },
+    "V6_token_type_embeddings_applied": {
+      "checkpoint_has_token_type_embeddings": true,
+      "ablation_max_abs_output_delta": 0.3739359378814697,
+      "applied_in_forward": true,
+      "note": "官方 HF BertModel 默认 token_type_ids=0 → 加上 token_type_embeddings[0]，本实现一致"
+    },
+    "V7_position_embedding": {
+      "cfg_max_position": 512,
+      "cfg_context_length": 256,
+      "checkpoint_position_embedding_shape": [
+        512,
+        768
+      ],
+      "implementation": "position_ids = arange(0, L)（与 HF 一致）",
+      "consistent": true
+    },
+    "V8_preprocessing": {
+      "official_mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "implementation_mean_float32": [
+        0.48145467042922974,
+        0.45782750844955444,
+        0.40821072459220886
+      ],
+      "mean_match_within_1e-6": true,
+      "official_std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ],
+      "implementation_std_float32": [
+        0.2686295509338379,
+        0.2613025903701782,
+        0.27577710151672363
+      ],
+      "std_match_within_1e-6": true,
+      "pipeline": "resize 短边到 224 → center crop 224 → /255 → (x-mean)/std → CHW",
+      "interpolation": "bicubic",
+      "note": "实现用 float32 存储；与官方 float64 字面量以 1e-6 容差比对（避免舍入误判）"
+    },
+    "V9_pooling": {
+      "official_hf_pooler_type": "cls_last_hidden_state_pooler",
+      "implementation": "hidden[:, 0]（最后一层 CLS）后接 proj",
+      "checkpoint_has_extra_pooler_params": false,
+      "consistent": true
+    },
+    "V10_strict_load_and_determinism": {
+      "n_parameters": 195902721,
+      "forward_determinism_max_abs_diff": 0.0,
+      "fingerprint": {
+        "official_hf_id": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+        "arch_version": "medalign-biomedclip-torch-v1.0",
+        "weights_path": "D:\\PQY\\Five\\post\\实习、工作\\找工作\\简历合集\\蚂蚁\\MedAlignFlywheel\\data\\external\\models\\biomedclip\\open_clip_pytorch_model.bin",
+        "weights_bytes": 783705670,
+        "file_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+        "tensor_sha256": "769bc1d3d7aa06aa3dec1d4acabdf77ee4544b72650a3bf838678568eba46af2"
+      }
+    }
+  },
+  "unverified": {
+    "U1_full_forward_numeric_equivalence": {
+      "status": "BLOCKED",
+      "attempts": [
+        "medalign venv (torch 1.13.1+cu116): `import open_clip` 段错误 (exit 139)",
+        "refclip venv (torch 2.x CPU): `c10.dll` DLL 初始化失败 (WinError 1114)"
+      ],
+      "mitigation": "提供可移植对照脚本 scripts/reference_compare_openclip.py（在有 open_clip 的机器上一次性验证）",
+      "claim_allowed": "本机**未**证明自包含前向与官方逐向量等价；不得声称'完全等价'。"
+    },
+    "U2_interpolation_backend": {
+      "issue": "PIL Image.BICUBIC 与 torchvision InterpolationMode.BICUBIC 在降采样时可能有亚像素差异",
+      "impact": "像素级微小差异 → 嵌入微小差异；未实测量化"
+    },
+    "U3_self_attention_and_gelu": {
+      "issue": "自实现 Self-Attention / F.gelu 与 HF 实现结构一致，但中间数值未与官方实测对照",
+      "note": "F.gelu 为精确 erf 版，与 transformers ACT2FN['gelu'] 语义一致；结论仍待 U1 脚本验证"
+    },
+    "U4_official_tokenizer_runtime": {
+      "issue": "未在本机运行官方 BertTokenizerFast 做逐样本对照；V1–V5 为文件级/行为级间接验证",
+      "residual_risk": "极端输入（超长、罕见符号）下的分词边界未实测"
+    }
+  },
+  "bottom_line": "词表/分词器/特殊 token/预处理/池化/位置编码均已逐项与官方产物对照一致；但**全塔前向的逐向量数值等价性本机无法验证（BLOCKED）**，本项目不声称'与官方完全等价'，只声称'无已知计算差异，且提供一键验证脚本'。"
+}

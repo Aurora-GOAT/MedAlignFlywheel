@@ -1,0 +1,12 @@
+{
+  "n_total": 229,
+  "by_primary": {
+    "model_ranking_error": 214,
+    "borderline_positive": 15
+  },
+  "by_flag": {
+    "needs_human_review": 229,
+    "shared_concept": 229
+  },
+  "caveat": "risk_false_positive 仅表示模型检索排序把高相似负例置于正例之前，不等于已确认的医学错配；真正错配须经人工复核字段确认，不得冒充确定错误。"
+}

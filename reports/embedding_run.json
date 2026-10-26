@@ -1,0 +1,127 @@
+{
+  "seed": {
+    "python": 20260701,
+    "numpy": 20260701,
+    "torch": 20260701
+  },
+  "env": {
+    "python_version": "3.10.7",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "machine": "AMD64",
+    "torch_version": "1.13.1+cu116",
+    "torch_cuda_compiled": "11.6",
+    "torch_cudnn": 8302,
+    "numpy_version": "1.26.4",
+    "device_used": "cuda",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce GTX 1660 Ti",
+    "gpu_capability": [
+      7,
+      5
+    ],
+    "gpu_total_mem_mb": 6442.1
+  },
+  "weight_fingerprint": {
+    "official_hf_id": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+    "arch_version": "medalign-biomedclip-torch-v1.0",
+    "weights_path": "data\\external\\models\\biomedclip\\open_clip_pytorch_model.bin",
+    "weights_bytes": 783705670,
+    "file_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+    "tensor_sha256": "769bc1d3d7aa06aa3dec1d4acabdf77ee4544b72650a3bf838678568eba46af2",
+    "n_tensors": 351,
+    "n_parameters": 195902721,
+    "load_mode": "strict zero-missing zero-unexpected",
+    "dropped_non_parameter_buffers": [
+      "text.transformer.embeddings.position_ids"
+    ],
+    "dropped_reason": "position_ids 是 HF BertModel 的常量 buffer（不是可学习参数），本实现用 torch.arange 等价生成",
+    "context_length": 256,
+    "image_size": 224,
+    "embed_dim": 512,
+    "logit_scale": 4.445380210876465,
+    "logit_scale_exp": 85.2322769165039,
+    "open_clip_config": {
+      "model_cfg": {
+        "embed_dim": 512,
+        "vision_cfg": {
+          "timm_model_name": "vit_base_patch16_224",
+          "timm_model_pretrained": false,
+          "timm_pool": "",
+          "timm_proj": "linear",
+          "image_size": 224
+        },
+        "text_cfg": {
+          "hf_model_name": "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract",
+          "hf_tokenizer_name": "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract",
+          "hf_proj_type": "mlp",
+          "hf_pooler_type": "cls_last_hidden_state_pooler",
+          "context_length": 256
+        }
+      },
+      "preprocess_cfg": {
+        "mean": [
+          0.48145466,
+          0.4578275,
+          0.40821073
+        ],
+        "std": [
+          0.26862954,
+          0.26130258,
+          0.27577711
+        ]
+      }
+    },
+    "device": "cuda",
+    "torch_version": "1.13.1+cu116"
+  },
+  "manifest": "data/metadata/clean_manifest.jsonl",
+  "splits": {
+    "train": {
+      "n_samples": 592,
+      "image_emb_shape": [
+        592,
+        512
+      ],
+      "text_emb_shape": [
+        592,
+        512
+      ],
+      "image_sec": 34.07,
+      "text_sec": 17.12,
+      "images_per_sec": 17.38
+    },
+    "validation": {
+      "n_samples": 198,
+      "image_emb_shape": [
+        198,
+        512
+      ],
+      "text_emb_shape": [
+        198,
+        512
+      ],
+      "image_sec": 9.0,
+      "text_sec": 5.96,
+      "images_per_sec": 21.99
+    },
+    "test": {
+      "n_samples": 200,
+      "image_emb_shape": [
+        200,
+        512
+      ],
+      "text_emb_shape": [
+        200,
+        512
+      ],
+      "image_sec": 9.48,
+      "text_sec": 6.66,
+      "images_per_sec": 21.09
+    }
+  },
+  "batch_size": {
+    "image": 32,
+    "text": 64
+  },
+  "note": "embeddings are L2-unormalized raw projections; retrieval code normalizes"
+}

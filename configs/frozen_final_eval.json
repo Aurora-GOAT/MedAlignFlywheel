@@ -1,0 +1,34 @@
+{
+  "frozen_at_utc": "2026-10-26T18:25:37.728463+00:00",
+  "purpose": "最终独立测试集评价（只做一次）",
+  "candidate_scales": [
+    200,
+    500,
+    1000
+  ],
+  "metrics": [
+    "I2T/T2I R@1",
+    "R@5",
+    "R@10",
+    "MRR",
+    "AUROC(all off-diagonal)"
+  ],
+  "ks": [
+    1,
+    5,
+    10
+  ],
+  "seed": 20260701,
+  "n_boot": 1000,
+  "model": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+  "weights_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+  "manifest_path": "data\\metadata\\holdout_v2_manifest.jsonl",
+  "manifest_sha256": "d689e6c453dac05b85e143765a153d1fc5336ee57fe5522b4dfb0fc7dad5195a",
+  "manifest_n_rows": 1000,
+  "near_dup_thresholds": {
+    "image_hamming_max": 8,
+    "caption_containment_min": 0.8
+  },
+  "candidate_ordering": "按 sample_id 字典序取前缀（确定性）",
+  "declared_before_evaluation": true
+}

@@ -1,0 +1,225 @@
+{
+  "generated_at_utc": "2026-10-25T20:13:06.847955+00:00",
+  "pipeline_version": "medalign-quality-pipeline-v1.1",
+  "thresholds": {
+    "hamming_max": 6,
+    "text_jaccard_min": 0.8,
+    "text_containment_min": 0.95
+  },
+  "n_clusters": 15,
+  "clusters": [
+    {
+      "cluster_id": "img:ROCOv2_2023_train_042787",
+      "kind": "near-image",
+      "members": [
+        "ROCOv2_2023_train_042787",
+        "ROCOv2_2023_train_042789"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_distances": {
+          "ROCOv2_2023_train_042787|ROCOv2_2023_train_042789": 4
+        }
+      }
+    },
+    {
+      "cluster_id": "img:ROCOv2_2023_train_045654",
+      "kind": "near-image",
+      "members": [
+        "ROCOv2_2023_train_045654",
+        "ROCOv2_2023_train_045655"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_distances": {
+          "ROCOv2_2023_train_045654|ROCOv2_2023_train_045655": 2
+        }
+      }
+    },
+    {
+      "cluster_id": "img:ROCOv2_2023_train_054936",
+      "kind": "near-image",
+      "members": [
+        "ROCOv2_2023_train_054936",
+        "ROCOv2_2023_train_054937",
+        "ROCOv2_2023_train_054938"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_distances": {
+          "ROCOv2_2023_train_054936|ROCOv2_2023_train_054937": 0,
+          "ROCOv2_2023_train_054936|ROCOv2_2023_train_054938": 2,
+          "ROCOv2_2023_train_054937|ROCOv2_2023_train_054938": 2
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_test_001260",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_test_001260",
+        "ROCOv2_2023_valid_001272"
+      ],
+      "crosses_split": true,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_test_001260|ROCOv2_2023_valid_001272": 0.9091
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_test_003986",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_test_003986",
+        "ROCOv2_2023_valid_003980"
+      ],
+      "crosses_split": true,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_test_003986|ROCOv2_2023_valid_003980": 0.8947
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_test_006380",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_test_006380",
+        "ROCOv2_2023_test_006381"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_test_006380|ROCOv2_2023_test_006381": 0.8
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_test_006385",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_test_006385",
+        "ROCOv2_2023_valid_006349"
+      ],
+      "crosses_split": true,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_test_006385|ROCOv2_2023_valid_006349": 0.8
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_test_008802",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_test_008802",
+        "ROCOv2_2023_test_008803"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_test_008802|ROCOv2_2023_test_008803": 0.9231
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_012515",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_012515",
+        "ROCOv2_2023_train_012516"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_012515|ROCOv2_2023_train_012516": 0.8182
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_017410",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_017410",
+        "ROCOv2_2023_train_017411"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_017410|ROCOv2_2023_train_017411": 0.9048
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_024249",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_024249",
+        "ROCOv2_2023_train_024252"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_024249|ROCOv2_2023_train_024252": 0.8182
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_024251",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_024251",
+        "ROCOv2_2023_train_024253"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_024251|ROCOv2_2023_train_024253": 0.8333
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_031736",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_031736",
+        "ROCOv2_2023_train_031737"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_031736|ROCOv2_2023_train_031737": 0.8333
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_031738",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_031738",
+        "ROCOv2_2023_train_031739"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_031738|ROCOv2_2023_train_031739": 0.8462
+        }
+      }
+    },
+    {
+      "cluster_id": "cap:ROCOv2_2023_train_038332",
+      "kind": "near-caption",
+      "members": [
+        "ROCOv2_2023_train_038332",
+        "ROCOv2_2023_train_038333"
+      ],
+      "crosses_split": false,
+      "evidence": {
+        "pair_jaccard": {
+          "ROCOv2_2023_train_038332|ROCOv2_2023_train_038333": 0.8421
+        }
+      }
+    }
+  ]
+}

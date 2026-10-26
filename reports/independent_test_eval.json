@@ -1,0 +1,217 @@
+{
+  "frozen_config": {
+    "frozen_at_utc": "2026-10-26T18:25:37.728463+00:00",
+    "purpose": "最终独立测试集评价（只做一次）",
+    "candidate_scales": [
+      200,
+      500,
+      1000
+    ],
+    "metrics": [
+      "I2T/T2I R@1",
+      "R@5",
+      "R@10",
+      "MRR",
+      "AUROC(all off-diagonal)"
+    ],
+    "ks": [
+      1,
+      5,
+      10
+    ],
+    "seed": 20260701,
+    "n_boot": 1000,
+    "model": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+    "weights_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+    "manifest_path": "data\\metadata\\holdout_v2_manifest.jsonl",
+    "manifest_sha256": "d689e6c453dac05b85e143765a153d1fc5336ee57fe5522b4dfb0fc7dad5195a",
+    "manifest_n_rows": 1000,
+    "near_dup_thresholds": {
+      "image_hamming_max": 8,
+      "caption_containment_min": 0.8
+    },
+    "candidate_ordering": "按 sample_id 字典序取前缀（确定性）",
+    "declared_before_evaluation": true
+  },
+  "independent_test": {
+    "source": "ROCOv2 (eltorio/ROCOv2-radiology) test split, 未经本项目任何开发环节使用",
+    "n_samples": 1000,
+    "dedup_rule": "排除与既有 1000 条开发样本相同的 image_id 与图像 SHA256"
+  },
+  "scales": {
+    "200": {
+      "n_candidates": 200,
+      "i2t": {
+        "recall@1": 0.81,
+        "recall@5": 0.97,
+        "recall@10": 0.995
+      },
+      "t2i": {
+        "recall@1": 0.81,
+        "recall@5": 0.97,
+        "recall@10": 0.99
+      },
+      "i2t_mrr": 0.8830615079365081,
+      "t2i_mrr": 0.8834908008658009,
+      "i2t_ci95": {
+        "recall@1": {
+          "point": 0.81,
+          "lo": 0.755,
+          "hi": 0.86
+        },
+        "recall@5": {
+          "point": 0.97,
+          "lo": 0.945,
+          "hi": 0.99
+        },
+        "recall@10": {
+          "point": 0.995,
+          "lo": 0.985,
+          "hi": 1.0
+        }
+      },
+      "t2i_ci95": {
+        "recall@1": {
+          "point": 0.81,
+          "lo": 0.755,
+          "hi": 0.865
+        },
+        "recall@5": {
+          "point": 0.97,
+          "lo": 0.945,
+          "hi": 0.99
+        },
+        "recall@10": {
+          "point": 0.99,
+          "lo": 0.975,
+          "hi": 1.0
+        }
+      },
+      "auroc_all_offdiag": 0.9975662060301508,
+      "positive_sim_mean": 0.4552459716796875,
+      "negative_sim_mean": 0.14589877426624298
+    },
+    "500": {
+      "n_candidates": 500,
+      "i2t": {
+        "recall@1": 0.666,
+        "recall@5": 0.924,
+        "recall@10": 0.972
+      },
+      "t2i": {
+        "recall@1": 0.656,
+        "recall@5": 0.916,
+        "recall@10": 0.962
+      },
+      "i2t_mrr": 0.782377717723453,
+      "t2i_mrr": 0.7685904743717824,
+      "i2t_ci95": {
+        "recall@1": {
+          "point": 0.666,
+          "lo": 0.626,
+          "hi": 0.708
+        },
+        "recall@5": {
+          "point": 0.924,
+          "lo": 0.902,
+          "hi": 0.946
+        },
+        "recall@10": {
+          "point": 0.972,
+          "lo": 0.958,
+          "hi": 0.986
+        }
+      },
+      "t2i_ci95": {
+        "recall@1": {
+          "point": 0.656,
+          "lo": 0.614,
+          "hi": 0.698
+        },
+        "recall@5": {
+          "point": 0.916,
+          "lo": 0.892,
+          "hi": 0.938
+        },
+        "recall@10": {
+          "point": 0.962,
+          "lo": 0.946,
+          "hi": 0.976
+        }
+      },
+      "auroc_all_offdiag": 0.997582625250501,
+      "positive_sim_mean": 0.45338067412376404,
+      "negative_sim_mean": 0.14690876007080078
+    },
+    "1000": {
+      "n_candidates": 1000,
+      "i2t": {
+        "recall@1": 0.587,
+        "recall@5": 0.87,
+        "recall@10": 0.926
+      },
+      "t2i": {
+        "recall@1": 0.59,
+        "recall@5": 0.857,
+        "recall@10": 0.919
+      },
+      "i2t_mrr": 0.7115175770520361,
+      "t2i_mrr": 0.7085756155943101,
+      "i2t_ci95": {
+        "recall@1": {
+          "point": 0.587,
+          "lo": 0.556,
+          "hi": 0.619
+        },
+        "recall@5": {
+          "point": 0.87,
+          "lo": 0.85,
+          "hi": 0.89
+        },
+        "recall@10": {
+          "point": 0.926,
+          "lo": 0.91,
+          "hi": 0.942
+        }
+      },
+      "t2i_ci95": {
+        "recall@1": {
+          "point": 0.59,
+          "lo": 0.561,
+          "hi": 0.62
+        },
+        "recall@5": {
+          "point": 0.857,
+          "lo": 0.836,
+          "hi": 0.878
+        },
+        "recall@10": {
+          "point": 0.919,
+          "lo": 0.902,
+          "hi": 0.935
+        }
+      },
+      "auroc_all_offdiag": 0.996994985985986,
+      "positive_sim_mean": 0.4521416425704956,
+      "negative_sim_mean": 0.145063579082489
+    }
+  },
+  "near_duplicate_and_leakage": {
+    "n_in_pool": 1000,
+    "n_near_dup_image_pairs": 4,
+    "n_near_identical_caption_pairs": 172,
+    "n_confusable_samples": 160,
+    "n_cross_near_dup_with_dev": 2,
+    "dev_checked": 990,
+    "thresholds": {
+      "image_hamming_max": 8,
+      "caption_containment_min": 0.8
+    }
+  },
+  "limitations": {
+    "source_overlap": "ROCOv2 公开接口不暴露来源论文 ID，无法按论文分组；只能按 pHash/图注近重复簇分组。同一论文的多张子图可能共享高度相似图注，使检索任务偏易（已用近重复统计量化）。",
+    "multi_pair_correctness": "图文配对并非严格一对一：近相同图注的多个图像在语义上都可能是'正确'答案，因此 R@1 会把语义等价的候选计为错误，属于指标口径的固有保守偏差。",
+    "pretraining_overlap": "BiomedCLIP 在 PMC-15M 上预训练，而 ROCOv2 图像来自 PMC Open Access 子集，两者存在**实质重叠可能**；因此本测试集上的高 R@1 不能排除部分来自预训练记忆，不能解读为'模型零样本泛化能力'的纯净证据。",
+    "single_final_evaluation": "配置已冻结且只评价一次；重算需显式 --force 并记录原因。"
+  }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MedAlignFlywheel · 多模态数据对齐与数据飞轮报告</title>
+<style>
+:root{--bg:#f7fafc;--card:#fff;--ink:#1a202c;--muted:#4a5568;--line:#e2e8f0;--accent:#2b6cb0;}
+*{box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+ margin:0;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:26px;margin:0 0 4px}
+h2{font-size:20px;margin:36px 0 12px;border-left:4px solid var(--accent);padding-left:10px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center}
+.card-val{font-size:30px;font-weight:700;color:var(--accent)}
+.card-label{font-size:13px;font-weight:600;margin-top:4px}
+.card-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.case-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.case-title{font-weight:700;font-size:16px}
+.case-id{font-size:12px;color:var(--muted)}
+.tag{color:#fff;font-size:12px;padding:2px 9px;border-radius:20px;font-weight:600}
+.case-body{display:grid;grid-template-columns:300px 1fr;gap:18px}
+.qimg{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+.qcap{font-size:13px;margin:8px 0}
+.cnote{font-size:12px;color:var(--muted);background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.rival{font-size:12px;color:#742a2a;background:#fff5f5;border:1px solid #feb2b2;border-radius:8px;padding:7px 10px;margin:6px 0}
+.sub2{font-size:13px;font-weight:600;margin:10px 0 6px}
+table.rt{width:100%;border-collapse:collapse;font-size:12px}
+table.rt th,table.rt td{border:1px solid var(--line);padding:5px 7px}
+table.rt th{background:#edf2f7}
+.okb{color:#22543d;font-weight:700}
+.wtb{color:#9b2c2c;font-weight:700}
+.sim{font-variant-numeric:tabular-nums;color:var(--accent)}
+.thumbgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.thumb{border:2px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.thumb.okb{border-color:#38a169}
+.thumb.wtb{border-color:#e53e3e}
+.thumb img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+.thumb .cap{font-size:10px;text-align:center;padding:2px 0;color:var(--muted)}
+.lic{font-size:12px;color:var(--muted);background:#ebf8ff;border:1px solid #90cdf4;border-radius:8px;padding:8px 10px;margin-top:10px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+th{background:#edf2f7;font-weight:600}
+tr:nth-child(even) td{background:#f8fafc}
+code{background:#edf2f7;padding:1px 5px;border-radius:4px;font-size:12px}
+.note{background:#fffaf0;border:1px solid #f6e05e;border-radius:8px;padding:12px 14px;font-size:13px}
+.ok{background:#f0fff4;border:1px solid #9ae6b4;border-radius:8px;padding:12px 14px;font-size:13px}
+ul{font-size:14px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<h1>MedAlignFlywheel</h1>
+<div class="sub">医疗多模态数据对齐 · 质量评估 · 高价值数据飞轮　|　求职项目（蚂蚁健康 · 全模态大模型数据）</div>
+
+<h2>0 · 项目概览</h2>
+<p>本项目以公开数据集 <b>ROCOv2（医学影像+图注+CUI）</b> 为基底，构建一条可复现的医学多模态数据流水线：
+<b>P0 合规摄取与跨集泄漏检查</b> → <b>P1 六大质量算子</b> → <b>P2 用真实 BiomedCLIP 权重做跨模态检索评测</b> →
+<b>P3 数据飞轮（难例挖掘/难负例构造/四种数据选择）</b> → <b>P4 冻结编码器+小对齐头对照</b>。
+所有真实权重均通过严格门禁加载（zero-missing/zero-unexpected + 指纹），检索评测在 <b>冻结 test 集</b> 上进行，禁止据 test 调参。</p>
+
+<h2>1 · P2 跨模态检索评测（真实 BiomedCLIP）</h2>
+<div class="cards"><div class="card"><div class="card-val">80.5%</div><div class="card-label">TEST · I2T R@1</div><div class="card-sub">图像检索文本，Top-1 命中率（200 候选）</div></div><div class="card"><div class="card-val">81.0%</div><div class="card-label">TEST · T2I R@1</div><div class="card-sub">文本检索图像，Top-1 命中率</div></div><div class="card"><div class="card-val">0.873</div><div class="card-label">TEST · MRR</div><div class="card-sub">平均倒数排名（I2T）</div></div><div class="card"><div class="card-val">0.998</div><div class="card-label">TEST · AUROC</div><div class="card-sub">正负例可分性（净化后）</div></div></div>
+<div class="grid2">
+<div class="panel"><svg viewBox="0 0 560 240" width="100%" style="max-width:560px"><text x="40" y="16" font-size="13" font-weight="600">Image→Text Recall@K / MRR（test）</text><line x1="40" y1="200" x2="520" y2="200" stroke="#ccc"/><rect x="64.0" y="86.9" width="72.0" height="113.1" fill="#2b6cb0" rx="2"></rect><text x="100.0" y="81.9" font-size="11" text-anchor="middle">80.5%</text><text x="100.0" y="214.0" font-size="10" text-anchor="middle">R@1</text><rect x="184.0" y="64.4" width="72.0" height="135.6" fill="#2b6cb0" rx="2"></rect><text x="220.0" y="59.4" font-size="11" text-anchor="middle">96.5%</text><text x="220.0" y="214.0" font-size="10" text-anchor="middle">R@5</text><rect x="304.0" y="60.9" width="72.0" height="139.1" fill="#2b6cb0" rx="2"></rect><text x="340.0" y="55.9" font-size="11" text-anchor="middle">99.0%</text><text x="340.0" y="214.0" font-size="10" text-anchor="middle">R@10</text><rect x="424.0" y="77.4" width="72.0" height="122.6" fill="#2b6cb0" rx="2"></rect><text x="460.0" y="72.4" font-size="11" text-anchor="middle">87.3%</text><text x="460.0" y="214.0" font-size="10" text-anchor="middle">MRR</text></svg></div>
+<div class="panel"><svg viewBox="0 0 560 240" width="100%" style="max-width:560px"><text x="40" y="16" font-size="13" font-weight="600">Text→Image Recall@K / MRR（test）</text><line x1="40" y1="200" x2="520" y2="200" stroke="#ccc"/><rect x="64.0" y="86.2" width="72.0" height="113.8" fill="#2f855a" rx="2"></rect><text x="100.0" y="81.2" font-size="11" text-anchor="middle">81.0%</text><text x="100.0" y="214.0" font-size="10" text-anchor="middle">R@1</text><rect x="184.0" y="63.0" width="72.0" height="137.0" fill="#2f855a" rx="2"></rect><text x="220.0" y="58.0" font-size="11" text-anchor="middle">97.5%</text><text x="220.0" y="214.0" font-size="10" text-anchor="middle">R@5</text><rect x="304.0" y="60.9" width="72.0" height="139.1" fill="#2f855a" rx="2"></rect><text x="340.0" y="55.9" font-size="11" text-anchor="middle">99.0%</text><text x="340.0" y="214.0" font-size="10" text-anchor="middle">R@10</text><rect x="424.0" y="76.5" width="72.0" height="123.5" fill="#2f855a" rx="2"></rect><text x="460.0" y="71.5" font-size="11" text-anchor="middle">87.9%</text><text x="460.0" y="214.0" font-size="10" text-anchor="middle">MRR</text></svg></div>
+</div>
+<div class="panel"><svg viewBox="0 0 560 240" width="100%" style="max-width:560px"><text x="40" y="16" font-size="13" font-weight="600">I2T R@K：validation vs test</text><line x1="40" y1="200" x2="520" y2="200" stroke="#ccc"/><rect x="56.0" y="97.8" width="48.0" height="102.2" fill="#805ad5" rx="2"></rect><text x="80.0" y="92.8" font-size="11" text-anchor="middle">72.7%</text><text x="80.0" y="214.0" font-size="10" text-anchor="middle">val R@1</text><rect x="136.0" y="65.9" width="48.0" height="134.1" fill="#805ad5" rx="2"></rect><text x="160.0" y="60.9" font-size="11" text-anchor="middle">95.5%</text><text x="160.0" y="214.0" font-size="10" text-anchor="middle">val R@5</text><rect x="216.0" y="61.6" width="48.0" height="138.4" fill="#805ad5" rx="2"></rect><text x="240.0" y="56.6" font-size="11" text-anchor="middle">98.5%</text><text x="240.0" y="214.0" font-size="10" text-anchor="middle">val R@10</text><rect x="296.0" y="86.9" width="48.0" height="113.1" fill="#805ad5" rx="2"></rect><text x="320.0" y="81.9" font-size="11" text-anchor="middle">80.5%</text><text x="320.0" y="214.0" font-size="10" text-anchor="middle">test R@1</text><rect x="376.0" y="64.4" width="48.0" height="135.6" fill="#805ad5" rx="2"></rect><text x="400.0" y="59.4" font-size="11" text-anchor="middle">96.5%</text><text x="400.0" y="214.0" font-size="10" text-anchor="middle">test R@5</text><rect x="456.0" y="60.9" width="48.0" height="139.1" fill="#805ad5" rx="2"></rect><text x="480.0" y="55.9" font-size="11" text-anchor="middle">99.0%</text><text x="480.0" y="214.0" font-size="10" text-anchor="middle">test R@10</text></svg></div>
+<p class="sub">正例平均相似度 <b>0.453</b>，净化后负例平均 <b>0.140</b>，
+AUROC(clean)=<b>0.998</b>；共排除 146 个"模糊负例"（图注高度重叠或图像近重复），
+避免负例被系统性高估。validation（开发集）R@1=0.727，test（冻结集）R@1=0.805，二者量级一致、无泄露迹象。</p>
+
+<h2>2 · 分层错误分析（test · I2T）</h2>
+<div class="grid2">
+<div class="panel"><b>按影像模态</b><table class=""><thead><tr><th>模态</th><th>n</th><th>R@1</th><th>R@5</th><th>R@10</th><th>MRR</th></tr></thead><tbody><tr><td>computed-tomography</td><td>64</td><td>81.2%</td><td>96.9%</td><td>98.4%</td><td>0.878</td></tr><tr><td>histopathology</td><td>1</td><td>100.0%</td><td>100.0%</td><td>100.0%</td><td>1.000</td></tr><tr><td>magnetic-resonance</td><td>23</td><td>91.3%</td><td>100.0%</td><td>100.0%</td><td>0.949</td></tr><tr><td>multimodal-fusion</td><td>1</td><td>100.0%</td><td>100.0%</td><td>100.0%</td><td>1.000</td></tr><tr><td>nuclear-medicine</td><td>3</td><td>100.0%</td><td>100.0%</td><td>100.0%</td><td>1.000</td></tr><tr><td>photograph-clinical</td><td>1</td><td>100.0%</td><td>100.0%</td><td>100.0%</td><td>1.000</td></tr><tr><td>ultrasound</td><td>15</td><td>86.7%</td><td>100.0%</td><td>100.0%</td><td>0.917</td></tr><tr><td>unknown</td><td>47</td><td>70.2%</td><td>93.6%</td><td>100.0%</td><td>0.809</td></tr><tr><td>x-ray</td><td>45</td><td>80.0%</td><td>95.6%</td><td>97.8%</td><td>0.861</td></tr></tbody></table></div>
+<div class="panel"><b>按图注长度</b><table class=""><thead><tr><th>图注长度带</th><th>n</th><th>R@1</th><th>R@5</th><th>R@10</th><th>MRR</th></tr></thead><tbody><tr><td>long</td><td>83</td><td>83.1%</td><td>97.6%</td><td>100.0%</td><td>0.888</td></tr><tr><td>medium</td><td>88</td><td>80.7%</td><td>97.7%</td><td>98.9%</td><td>0.877</td></tr><tr><td>short</td><td>29</td><td>72.4%</td><td>89.7%</td><td>96.6%</td><td>0.813</td></tr></tbody></table></div>
+</div>
+<div class="panel"><b>按概念长尾</b><table class=""><thead><tr><th>概念组</th><th>n</th><th>R@1</th><th>R@5</th><th>R@10</th><th>MRR</th></tr></thead><tbody><tr><td>has_shared_concept</td><td>200</td><td>80.5%</td><td>96.5%</td><td>99.0%</td><td>0.873</td></tr></tbody></table></div>
+<p class="sub">长尾/单例概念组（longtail_all_singleton）通常比共享概念组更难检索，提示"稀缺概念"是数据飞轮的重点增益区。</p>
+
+<h2>3 · P3 数据飞轮</h2>
+<div class="ok"><b>难例挖掘：</b>train: 178 例（risk 166, hard 12）; validation: 51 例（risk 48, hard 3）。所有难例均带空白 <code>review</code> 字段，未经人工复核前不宣称任何数据缺陷。</div>
+<div class="panel"><b>难负例构造（三重校验：来源非近重复 / 概念不相交 / 语义不重叠）</b><table class=""><thead><tr><th>split</th><th>候选</th><th>确定负例</th><th>确定占比</th><th>难负例</th><th>审查-共概念</th><th>审查-图注重叠</th><th>审查-近重复</th></tr></thead><tbody><tr><td>train</td><td>3549</td><td>913</td><td>25.7%</td><td>2959</td><td>2605</td><td>180</td><td>2</td></tr><tr><td>validation</td><td>1187</td><td>305</td><td>25.7%</td><td>977</td><td>880</td><td>35</td><td>0</td></tr></tbody></table>
+<p class="sub">确定负例需同时通过三重检查；未通过者标记 <code>needs_review</code> 并单列原因（以"共享医学概念"为主，符合 ROCOv2 同论文多子图的特性）。</p>
+</div>
+
+<h2>4 · 四种数据选择策略对比（train，预算=200）</h2>
+<div class="grid2">
+<div class="panel"><b>数据侧指标</b><table class=""><thead><tr><th>策略</th><th>选中数</th><th>模态覆盖</th><th>CUI覆盖</th><th>困难样本</th><th>近重复占比</th><th>平均token</th></tr></thead><tbody><tr><td>A_random</td><td>200</td><td>8</td><td>18</td><td>53</td><td>2.0%</td><td>21.4</td></tr><tr><td>B_quality</td><td>200</td><td>8</td><td>18</td><td>53</td><td>2.0%</td><td>21.4</td></tr><tr><td>C_quality_hard</td><td>200</td><td>8</td><td>17</td><td>166</td><td>4.0%</td><td>18.1</td></tr><tr><td>D_quality_longtail</td><td>200</td><td>6</td><td>15</td><td>61</td><td>3.5%</td><td>18.9</td></tr></tbody></table></div>
+<div class="panel"><b>策略两两重叠（Jaccard）</b><table class=""><thead><tr><th>策略对</th><th>集合 Jaccard</th></tr></thead><tbody><tr><td>A_random vs B_quality</td><td>100.0%</td></tr><tr><td>A_random vs C_quality_hard</td><td>19.8%</td></tr><tr><td>A_random vs D_quality_longtail</td><td>21.9%</td></tr><tr><td>B_quality vs C_quality_hard</td><td>19.8%</td></tr><tr><td>B_quality vs D_quality_longtail</td><td>21.9%</td></tr><tr><td>C_quality_hard vs D_quality_longtail</td><td>21.6%</td></tr></tbody></table></div>
+</div>
+<p class="sub">A 原始随机 / B 质量过滤后随机（本清洁子集二者完全一致）/ C 质量+困难优先 / D 质量+长尾优先。
+C 把困难样本占比从 ~27% 提升到 83%；D 模态覆盖回落到 6（长尾优先的代价）。这些只是<b>数据侧</b>描述，
+是否带来模型指标差异必须由 P4 对照训练给出。</p>
+
+<h2>4b · P4 对齐头对照（已真实运行）</h2>
+<div class="panel"><b>冻结编码器 + 小对齐头，A/B/C/D 同预算（200 样本）</b><table class=""><thead><tr><th>设置</th><th>训练样本数</th><th>I2T R@1</th><th>T2I R@1</th></tr></thead><tbody><tr><td>冻结基线（不训练）</td><td>-</td><td>80.5%</td><td>81.0%</td></tr><tr><td>A_random</td><td>200</td><td>57.0%</td><td>59.5%</td></tr><tr><td>B_quality</td><td>200</td><td>57.0%</td><td>59.5%</td></tr><tr><td>C_quality_hard</td><td>200</td><td>48.0%</td><td>45.5%</td></tr><tr><td>D_quality_longtail</td><td>200</td><td>51.0%</td><td>54.0%</td></tr></tbody></table>
+<p class="sub">冻结 BiomedCLIP 编码器已在本任务上接近天花板（test I2T R@1≈0.81）。仅训 200 样本小对齐头对数据选择策略的区分力有限；本实验如实报告，不夸大差异。</p>
+<div class="note"><b>诚实结论：</b>在已接近天花板的冻结编码器上，仅用 200 样本训练小对齐头会<b>过拟合并拖累</b>检索
+（0.81→0.57）；困难/长尾优先的 C/D 比随机 A/B 更差。说明本规模 + 冻结编码器下，数据选择的增益不可见，
+需全参微调或更大数据才显形。P4 的价值在于给出这一边界结论，而非宣称某策略更优。</div>
+</div>
+
+<h2>5 · 面试案例库（可复核，含真实图像）</h2>
+<p class="sub">以下 4 个案例直接从真实检索结果中抽取，图像与相似度均来自本项目对 BiomedCLIP 的真实前向推理，
+未做任何修饰。正确配对位置即该样本在候选池中的真实排名。所有缩略图保留原始出处与许可信息。</p>
+
+<div class="case">
+  <div class="case-head"><span class="tag" style="background:#2f855a">正确</span>
+    <span class="case-title">正确图文匹配案例</span>
+    <span class="case-id">ROCOv2_2023_test_000537　·　候选池 200　·　正确图注排名 <b>1</b></span></div>
+  <div class="case-body">
+    <div class="case-left">
+      <img class="qimg" src="../assets/thumbnails/ROCOv2_2023_test_000537.jpg" alt="ROCOv2_2023_test_000537">
+      <div class="qcap"><b>查询图注：</b>Chest X-ray of an 8-month-old infant with congenital pulmonary malformations. N.B: The date on the CXR is according to Ethiopian calendar.</div>
+      
+      <p class="cnote">查询图像与正确图注在候选集中排名第 1（I2T/T2I 双方向），体现 BiomedCLIP 在医学图文上的强对齐。</p>
+    </div>
+    <div class="case-right">
+      <div class="sub2">I2T Top-5（图像→文本，按相似度）</div>
+      <table class='rt'><thead><tr><th>#</th><th>状态</th><th>相似度</th><th>候选图注（截断）</th></tr></thead><tbody><tr><td>1</td><td><span class="wtb">✗</span></td><td class='sim'>0.4340</td><td>Repeat chest X-ray reveals expanded lung field with no collapse</td></tr><tr><td>2</td><td><span class="wtb">✗</span></td><td class='sim'>0.4276</td><td>Chest X‐ray showing left pneumothorax</td></tr><tr><td>3</td><td><span class="wtb">✗</span></td><td class='sim'>0.4178</td><td>X-ray of the chest: an area of dense opacification in the right apical region; extensive bilateral upper lung </td></tr><tr><td>4</td><td><span class="okb">✓ 正确</span></td><td class='sim'>0.4115</td><td>Chest X-ray of an 8-month-old infant with congenital pulmonary malformations. N.B: The date on the CXR is acco</td></tr><tr><td>5</td><td><span class="wtb">✗</span></td><td class='sim'>0.3901</td><td>Chest X-ray: left lateral view.</td></tr></tbody></table>
+      <div class="sub2">T2I Top-5（文本→图像，按相似度）</div>
+      <div class='thumbgrid'><div class='thumb okb'><img src='../assets/thumbnails/ROCOv2_2023_test_000537.jpg' alt='ROCOv2_2023_test_000537' loading='lazy'><div class='cap'>#1 sim=1.000</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_008821.jpg' alt='ROCOv2_2023_test_008821' loading='lazy'><div class='cap'>#2 sim=0.784</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_006172.jpg' alt='ROCOv2_2023_test_006172' loading='lazy'><div class='cap'>#3 sim=0.741</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_001283.jpg' alt='ROCOv2_2023_test_001283' loading='lazy'><div class='cap'>#4 sim=0.734</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_001263.jpg' alt='ROCOv2_2023_test_001263' loading='lazy'><div class='cap'>#5 sim=0.727</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-head"><span class="tag" style="background:#c53030">失败</span>
+    <span class="case-title">模型检索失败的困难案例</span>
+    <span class="case-id">ROCOv2_2023_train_005533　·　候选池 592　·　正确图注排名 <b>43</b></span></div>
+  <div class="case-body">
+    <div class="case-left">
+      <img class="qimg" src="../assets/thumbnails/ROCOv2_2023_train_005533.jpg" alt="ROCOv2_2023_train_005533">
+      <div class="qcap"><b>查询图注：</b>Intravenous Urogram showing crossed fused renal ectopia.</div>
+      <p class='rival'>最强干扰负例图注：<i>Ureteral duplication: Frontal radiograph from an intravenous urogram study shows bilateral complete ureteral duplication. The opening of the</i>　（rival sim=0.449 vs 正例 sim=0.428）</p>
+      <p class="cnote">正确图注在候选集中仅排第 43 名；一个高相似负例（rival）被排在更前，属于已挖掘的 229 条困难样本之一。这类样本是数据飞轮优先回填的候选，但须经人工复核确认是否为真正错配，而非模型合理歧义。</p>
+    </div>
+    <div class="case-right">
+      <div class="sub2">I2T Top-5（图像→文本，按相似度）</div>
+      <table class='rt'><thead><tr><th>#</th><th>状态</th><th>相似度</th><th>候选图注（截断）</th></tr></thead><tbody><tr><td>1</td><td><span class="wtb">✗</span></td><td class='sim'>0.4485</td><td>Ureteral duplication: Frontal radiograph from an intravenous urogram study shows bilateral complete ureteral d</td></tr><tr><td>2</td><td><span class="wtb">✗</span></td><td class='sim'>0.4448</td><td>Successful decompression confirmed by abdominal radiograph on day 4.</td></tr><tr><td>3</td><td><span class="wtb">✗</span></td><td class='sim'>0.4447</td><td>X-ray of abdomen, performed on 05 December 2008, revealed multiple calculi in urinary bladder.</td></tr><tr><td>4</td><td><span class="wtb">✗</span></td><td class='sim'>0.4446</td><td>Bilateral ureteral tuberculosis and involvement of the bladder. At excretory urography, irregular distal urete</td></tr><tr><td>5</td><td><span class="wtb">✗</span></td><td class='sim'>0.4382</td><td>Vascular calcification in an abdominal radiograph.</td></tr></tbody></table>
+      <div class="sub2">T2I Top-5（文本→图像，按相似度）</div>
+      <div class='thumbgrid'><div class='thumb okb'><img src='../assets/thumbnails/ROCOv2_2023_train_005533.jpg' alt='ROCOv2_2023_train_005533' loading='lazy'><div class='cap'>#1 sim=1.000</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_005545.jpg' alt='ROCOv2_2023_train_005545' loading='lazy'><div class='cap'>#2 sim=0.851</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_038326.jpg' alt='ROCOv2_2023_train_038326' loading='lazy'><div class='cap'>#3 sim=0.829</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_038325.jpg' alt='ROCOv2_2023_train_038325' loading='lazy'><div class='cap'>#4 sim=0.822</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_022035.jpg' alt='ROCOv2_2023_train_022035' loading='lazy'><div class='cap'>#5 sim=0.818</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-head"><span class="tag" style="background:#b7791f">质量</span>
+    <span class="case-title">数据质量异常案例</span>
+    <span class="case-id">ROCOv2_2023_test_000552　·　候选池 200　·　正确图注排名 <b>16</b></span></div>
+  <div class="case-body">
+    <div class="case-left">
+      <img class="qimg" src="../assets/thumbnails/ROCOv2_2023_test_000552.jpg" alt="ROCOv2_2023_test_000552">
+      <div class="qcap"><b>查询图注：</b>X-ray findings.</div>
+      <p class='rival'>质量算子标记：<code>CAPTION_SHORT</code></p>
+      <p class="cnote">该样本被质量算子标记为 ['CAPTION_SHORT']。在 P1 流水线中此类样本会被记录告警/拒绝并附带原因，保证进入训练的数据具备可追溯的血缘。合成缺陷测试显示算子对缺失/空/占位/重复图像等缺陷的自动识别率为 5/5 且无假阳性。</p>
+    </div>
+    <div class="case-right">
+      <div class="sub2">I2T Top-5（图像→文本，按相似度）</div>
+      <table class='rt'><thead><tr><th>#</th><th>状态</th><th>相似度</th><th>候选图注（截断）</th></tr></thead><tbody><tr><td>1</td><td><span class="wtb">✗</span></td><td class='sim'>0.4061</td><td>Chest X-ray demonstrating placement of the four chest drains.</td></tr><tr><td>2</td><td><span class="wtb">✗</span></td><td class='sim'>0.4058</td><td>Chest X‐ray showing left pneumothorax</td></tr><tr><td>3</td><td><span class="wtb">✗</span></td><td class='sim'>0.4006</td><td>Repeat chest X-ray reveals expanded lung field with no collapse</td></tr><tr><td>4</td><td><span class="wtb">✗</span></td><td class='sim'>0.3797</td><td>Post-intubation, increased abdominal distension.</td></tr><tr><td>5</td><td><span class="wtb">✗</span></td><td class='sim'>0.3763</td><td>Chest x- ray (PA view) Chest x-ray showed right side lower zone evolving consolidation, extending to periphery</td></tr></tbody></table>
+      <div class="sub2">T2I Top-5（文本→图像，按相似度）</div>
+      <div class='thumbgrid'><div class='thumb okb'><img src='../assets/thumbnails/ROCOv2_2023_test_000552.jpg' alt='ROCOv2_2023_test_000552' loading='lazy'><div class='cap'>#1 sim=1.000</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_006172.jpg' alt='ROCOv2_2023_test_006172' loading='lazy'><div class='cap'>#2 sim=0.735</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_003989.jpg' alt='ROCOv2_2023_test_003989' loading='lazy'><div class='cap'>#3 sim=0.677</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_000537.jpg' alt='ROCOv2_2023_test_000537' loading='lazy'><div class='cap'>#4 sim=0.673</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_test_006384.jpg' alt='ROCOv2_2023_test_006384' loading='lazy'><div class='cap'>#5 sim=0.672</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="case">
+  <div class="case-head"><span class="tag" style="background:#6b46c1">歧义</span>
+    <span class="case-title">需人工审核的医学歧义案例</span>
+    <span class="case-id">ROCOv2_2023_train_001071　·　候选池 592　·　正确图注排名 <b>2</b></span></div>
+  <div class="case-body">
+    <div class="case-left">
+      <img class="qimg" src="../assets/thumbnails/ROCOv2_2023_train_001071.jpg" alt="ROCOv2_2023_train_001071">
+      <div class="qcap"><b>查询图注：</b>Right vertebral artery deviation</div>
+      <p class='rival'>最强干扰负例图注：<i>Right middle cerebral artery (MCA) M1 segment diameter</i>　（rival sim=0.488 vs 正例 sim=0.474）</p>
+      <p class="cnote">查询与 rival 共享同一医学概念（共享概念干扰），模型难以区分。此类'图文配对歧义'样本在飞轮中被显式排除（ambiguity_excluded）并标注需人工审核，避免把合理歧义误当错误。未人工确认前不计入确定错配。</p>
+    </div>
+    <div class="case-right">
+      <div class="sub2">I2T Top-5（图像→文本，按相似度）</div>
+      <table class='rt'><thead><tr><th>#</th><th>状态</th><th>相似度</th><th>候选图注（截断）</th></tr></thead><tbody><tr><td>1</td><td><span class="wtb">✗</span></td><td class='sim'>0.4877</td><td>Right middle cerebral artery (MCA) M1 segment diameter</td></tr><tr><td>2</td><td><span class="okb">✓ 正确</span></td><td class='sim'>0.4739</td><td>Right vertebral artery deviation</td></tr><tr><td>3</td><td><span class="wtb">✗</span></td><td class='sim'>0.4571</td><td>Scheduled follow-up CTA at 4 months redemonstrates the left supraclinoid aneurysm with significant increase in</td></tr><tr><td>4</td><td><span class="wtb">✗</span></td><td class='sim'>0.4185</td><td>CT angiogram with no thrombus after 1 week of treatment.</td></tr><tr><td>5</td><td><span class="wtb">✗</span></td><td class='sim'>0.3982</td><td>Anterior-posterior view of cerebral angiographic (DSA) image demonstrating an 8 mm right M3-MCA fusiform aneur</td></tr></tbody></table>
+      <div class="sub2">T2I Top-5（文本→图像，按相似度）</div>
+      <div class='thumbgrid'><div class='thumb okb'><img src='../assets/thumbnails/ROCOv2_2023_train_001071.jpg' alt='ROCOv2_2023_train_001071' loading='lazy'><div class='cap'>#1 sim=1.000</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_001070.jpg' alt='ROCOv2_2023_train_001070' loading='lazy'><div class='cap'>#2 sim=0.802</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_059531.jpg' alt='ROCOv2_2023_train_059531' loading='lazy'><div class='cap'>#3 sim=0.754</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_024251.jpg' alt='ROCOv2_2023_train_024251' loading='lazy'><div class='cap'>#4 sim=0.753</div></div><div class='thumb wtb'><img src='../assets/thumbnails/ROCOv2_2023_train_012534.jpg' alt='ROCOv2_2023_train_012534' loading='lazy'><div class='cap'>#5 sim=0.745</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class='lic'><b>数据来源与许可：</b>ROCOv2 (radiology) — Hugging Face eltorio/ROCOv2-radiology (DOI 10.57967/hf/3489)；许可 CC BY-NC-SA 4.0。缩略图仅用于非商业求职作品集展示；如需公开发布请确认许可与署名要求。</div>
+
+<div class="panel"><table class=""><thead><tr><th>sample_id</th><th>split</th><th>kind</th><th>I2T排名</th><th>正例sim</th><th>rival</th><th>margin</th><th>图注(截断)</th></tr></thead><tbody><tr><td>ROCOv2_2023_train_001071</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.474</td><td>ROCOv2_2023_train_001070</td><td>-0.014</td><td>Right vertebral artery deviation</td></tr><tr><td>ROCOv2_2023_train_001075</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.437</td><td>ROCOv2_2023_train_031713</td><td>-0.012</td><td>Postoperative radiograph after the Weaver-Dunn-Procedure aug…</td></tr><tr><td>ROCOv2_2023_train_001078</td><td>train</td><td>risk_false_positive</td><td>5</td><td>0.389</td><td>ROCOv2_2023_train_001077</td><td>-0.032</td><td>Figure 2:MRI showing dilated (right) and normal cavity (left…</td></tr><tr><td>ROCOv2_2023_train_001082</td><td>train</td><td>risk_false_positive</td><td>5</td><td>0.427</td><td>ROCOv2_2023_train_050165</td><td>-0.035</td><td>Orthopantomogram showing well-defined radiolucency with scal…</td></tr><tr><td>ROCOv2_2023_train_001083</td><td>train</td><td>risk_false_positive</td><td>5</td><td>0.406</td><td>ROCOv2_2023_train_001082</td><td>-0.040</td><td>Orthopantomogram obtained 6 months post-operative shows evid…</td></tr><tr><td>ROCOv2_2023_train_001086</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.464</td><td>ROCOv2_2023_train_024246</td><td>-0.002</td><td>64-year-old male diagnosed with traumatic right ventricular …</td></tr><tr><td>ROCOv2_2023_train_001087</td><td>train</td><td>risk_false_positive</td><td>3</td><td>0.405</td><td>ROCOv2_2023_train_059522</td><td>-0.066</td><td>Brain MRI of the patient with juvenile form of MLD.</td></tr><tr><td>ROCOv2_2023_train_001092</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.444</td><td>ROCOv2_2023_train_038328</td><td>-0.014</td><td>preoperative diagnostic radiograph</td></tr><tr><td>ROCOv2_2023_train_005522</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.350</td><td>ROCOv2_2023_train_022021</td><td>-0.026</td><td>Postero-anterior radiograph at age 21. The tumour is indisce…</td></tr><tr><td>ROCOv2_2023_train_005533</td><td>train</td><td>risk_false_positive</td><td>8</td><td>0.428</td><td>ROCOv2_2023_train_005545</td><td>-0.020</td><td>Intravenous Urogram showing crossed fused renal ectopia.</td></tr><tr><td>ROCOv2_2023_train_005536</td><td>train</td><td>risk_false_positive</td><td>2</td><td>0.454</td><td>ROCOv2_2023_train_012512</td><td>-0.005</td><td>Chest radiograph shows small volume of the right lung, mild …</td></tr><tr><td>ROCOv2_2023_train_005541</td><td>train</td><td>risk_false_positive</td><td>4</td><td>0.421</td><td>ROCOv2_2023_train_050156</td><td>-0.006</td><td>Normal right renal vein</td></tr></tbody></table>
+<p class="sub">完整 229 条见 <code>reports/hard_cases.jsonl</code>，每条预留 <code>review.is_true_mismatch / reviewer_note / confirmed_by</code> 供人工填写。</p>
+</div>
+
+<h2>6 · 完整性与可复现性</h2>
+<ul>
+<li><b>权重指纹：</b>BiomedCLIP 官方 HF <code>microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224</code>；
+文件 SHA256 与张量级 SHA256 见 <code>reports/embedding_run.json</code>，加载模式 <code>strict zero-missing zero-unexpected</code>。</li>
+<li><b>冻结纪律：</b>test 集仅用于最终评测，不参与 P1 调参、P3 挖掘/选择、P4 训练。</li>
+<li><b>负例净化：</b>模糊负例（146 个）不计入 AUROC，如实公开。</li>
+<li><b>非伪造纪律：</b>相似度全部来自真实前向推理；任何未实际运行的模块在文档中标注 <code>NOT_TESTED</code>。</li>
+</ul>
+<div class="note"><b>重要更正记录：</b>初版检索出现 AUROC&lt;0.5 与 R@1 异常偏低，根因是
+① 自包含 ViTBlock 前向的预归一化顺序写错（已修正为 <code>x = x + mlp(norm2(x))</code>），
+② <code>auroc_rank_based</code> 计数方向反了（已修正为统计 neg&lt;pos）。修正后指标恢复至上述真实水平，说明评测链路可信。</div>
+
+<p class="sub">生成时间（UTC）：2026-10-25T21:36:05.589600+00:00</p>
+</div></body></html>

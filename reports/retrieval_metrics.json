@@ -1,0 +1,710 @@
+{
+  "generated_at_utc": "2026-10-25T21:36:05.589600+00:00",
+  "config": {
+    "ks": [
+      1,
+      5,
+      10
+    ],
+    "n_boot": 1000,
+    "seed": 20260701,
+    "ambiguous_rule": {
+      "caption_containment_ge": 0.6,
+      "image_phash_hamming_lt": 10
+    }
+  },
+  "splits": {
+    "validation": {
+      "n_candidates": 198,
+      "i2t": {
+        "recall@1": 0.7272727272727273,
+        "recall@5": 0.9545454545454546,
+        "recall@10": 0.9848484848484849,
+        "mrr": 0.8283132852259474,
+        "median_rank": 1.0,
+        "bootstrap": {
+          "recall@1": {
+            "point": 0.7272727272727273,
+            "lo": 0.6666666666666666,
+            "hi": 0.7878787878787878
+          },
+          "recall@5": {
+            "point": 0.9545454545454546,
+            "lo": 0.9242424242424242,
+            "hi": 0.9848484848484849
+          },
+          "recall@10": {
+            "point": 0.9848484848484849,
+            "lo": 0.9646464646464646,
+            "hi": 1.0
+          },
+          "mrr": {
+            "point": 0.8283132852259475,
+            "lo": 0.787792264661067,
+            "hi": 0.8665248981038455
+          }
+        }
+      },
+      "t2i": {
+        "recall@1": 0.7525252525252525,
+        "recall@5": 0.9595959595959596,
+        "recall@10": 0.9747474747474747,
+        "mrr": 0.8455757461686315,
+        "median_rank": 1.0,
+        "bootstrap": {
+          "recall@1": {
+            "point": 0.7525252525252525,
+            "lo": 0.6919191919191919,
+            "hi": 0.8080808080808081
+          },
+          "recall@5": {
+            "point": 0.9595959595959596,
+            "lo": 0.9292929292929293,
+            "hi": 0.9848484848484849
+          },
+          "recall@10": {
+            "point": 0.9747474747474747,
+            "lo": 0.9494949494949495,
+            "hi": 0.9949494949494949
+          },
+          "mrr": {
+            "point": 0.8455757461686316,
+            "lo": 0.8049612680541534,
+            "hi": 0.8830838024513914
+          }
+        }
+      },
+      "i2t_minus_t2i_paired": {
+        "recall@1": {
+          "diff": -0.025252525252525252,
+          "lo": -0.08585858585858586,
+          "hi": 0.03535353535353535
+        },
+        "recall@5": {
+          "diff": -0.005050505050505051,
+          "lo": -0.020202020202020204,
+          "hi": 0.010101010101010102
+        },
+        "recall@10": {
+          "diff": 0.010101010101010102,
+          "lo": 0.0,
+          "hi": 0.025252525252525252
+        }
+      },
+      "negative_audit": {
+        "positive": {
+          "n": 198,
+          "mean": 0.44788855208893014,
+          "std": 0.04876116416812052,
+          "p05": 0.35075427293777467,
+          "p50": 0.4526841789484024,
+          "p95": 0.5232930928468704,
+          "min": 0.2791275382041931,
+          "max": 0.6271963715553284
+        },
+        "clean_negative": {
+          "n": 38918,
+          "mean": 0.14343864269066373,
+          "std": 0.0886941503001095,
+          "p05": 0.008052322920411826,
+          "p50": 0.13696490973234177,
+          "p95": 0.30330836921930315,
+          "min": -0.15999582409858704,
+          "max": 0.49256667494773865
+        },
+        "ambiguous_negative": {
+          "n": 88,
+          "mean": 0.3130723591470583,
+          "std": 0.10144853785120216,
+          "p05": 0.1154145609587431,
+          "p50": 0.31668955087661743,
+          "p95": 0.460062588751316,
+          "min": 0.061708223074674606,
+          "max": 0.5230156183242798
+        },
+        "auroc_clean": 0.996609031888337,
+        "auroc_all_offdiag": 0.9963711876494525,
+        "n_pairs_total": 39204,
+        "n_positive": 198,
+        "n_clean_negative": 38918,
+        "n_ambiguous_pair": 88,
+        "ambiguous_exclusion_rule": {
+          "caption_containment_ge": 0.6,
+          "image_phash_hamming_lt": 10
+        }
+      },
+      "stratified": {
+        "i2t": {
+          "modality_proxy": {
+            "computed-tomography": {
+              "n": 58,
+              "recall@1": 0.7758620689655172,
+              "recall@5": 0.9655172413793104,
+              "recall@10": 0.9827586206896551,
+              "mrr": 0.8505610290093049,
+              "median_rank": 1.0
+            },
+            "graphic-chart": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "magnetic-resonance": {
+              "n": 28,
+              "recall@1": 0.7142857142857143,
+              "recall@5": 0.9285714285714286,
+              "recall@10": 0.9642857142857143,
+              "mrr": 0.7968626924453991,
+              "median_rank": 1.0
+            },
+            "multimodal-fusion": {
+              "n": 1,
+              "recall@1": 0.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.5,
+              "median_rank": 2.0
+            },
+            "nuclear-medicine": {
+              "n": 1,
+              "recall@1": 0.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.5,
+              "median_rank": 2.0
+            },
+            "photograph-clinical": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "ultrasound": {
+              "n": 13,
+              "recall@1": 0.6923076923076923,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.8269230769230769,
+              "median_rank": 1.0
+            },
+            "unknown": {
+              "n": 55,
+              "recall@1": 0.7636363636363637,
+              "recall@5": 0.9636363636363636,
+              "recall@10": 1.0,
+              "mrr": 0.8646969696969697,
+              "median_rank": 1.0
+            },
+            "x-ray": {
+              "n": 40,
+              "recall@1": 0.65,
+              "recall@5": 0.925,
+              "recall@10": 0.975,
+              "mrr": 0.7763250517598344,
+              "median_rank": 1.0
+            }
+          },
+          "caption_length_band": {
+            "long": {
+              "n": 78,
+              "recall@1": 0.7948717948717948,
+              "recall@5": 0.9871794871794872,
+              "recall@10": 1.0,
+              "mrr": 0.886039886039886,
+              "median_rank": 1.0
+            },
+            "medium": {
+              "n": 92,
+              "recall@1": 0.7391304347826086,
+              "recall@5": 0.9456521739130435,
+              "recall@10": 0.9891304347826086,
+              "mrr": 0.8277044513457557,
+              "median_rank": 1.0
+            },
+            "short": {
+              "n": 28,
+              "recall@1": 0.5,
+              "recall@5": 0.8928571428571429,
+              "recall@10": 0.9285714285714286,
+              "mrr": 0.6695039228506047,
+              "median_rank": 1.5
+            }
+          },
+          "concept_group": {
+            "has_shared_concept": {
+              "n": 198,
+              "recall@1": 0.7272727272727273,
+              "recall@5": 0.9545454545454546,
+              "recall@10": 0.9848484848484849,
+              "mrr": 0.8283132852259474,
+              "median_rank": 1.0
+            }
+          }
+        },
+        "t2i": {
+          "modality_proxy": {
+            "computed-tomography": {
+              "n": 58,
+              "recall@1": 0.7413793103448276,
+              "recall@5": 0.9827586206896551,
+              "recall@10": 0.9827586206896551,
+              "mrr": 0.8388752052545155,
+              "median_rank": 1.0
+            },
+            "graphic-chart": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "magnetic-resonance": {
+              "n": 28,
+              "recall@1": 0.75,
+              "recall@5": 0.9285714285714286,
+              "recall@10": 0.9285714285714286,
+              "mrr": 0.8223861283643892,
+              "median_rank": 1.0
+            },
+            "multimodal-fusion": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "nuclear-medicine": {
+              "n": 1,
+              "recall@1": 0.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.5,
+              "median_rank": 2.0
+            },
+            "photograph-clinical": {
+              "n": 1,
+              "recall@1": 0.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.5,
+              "median_rank": 2.0
+            },
+            "ultrasound": {
+              "n": 13,
+              "recall@1": 0.6923076923076923,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.8333333333333333,
+              "median_rank": 1.0
+            },
+            "unknown": {
+              "n": 55,
+              "recall@1": 0.8181818181818182,
+              "recall@5": 0.9636363636363636,
+              "recall@10": 0.9818181818181818,
+              "mrr": 0.8940082644628099,
+              "median_rank": 1.0
+            },
+            "x-ray": {
+              "n": 40,
+              "recall@1": 0.725,
+              "recall@5": 0.925,
+              "recall@10": 0.975,
+              "mrr": 0.818465909090909,
+              "median_rank": 1.0
+            }
+          },
+          "caption_length_band": {
+            "long": {
+              "n": 78,
+              "recall@1": 0.8076923076923077,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.887179487179487,
+              "median_rank": 1.0
+            },
+            "medium": {
+              "n": 92,
+              "recall@1": 0.75,
+              "recall@5": 0.9456521739130435,
+              "recall@10": 0.967391304347826,
+              "mrr": 0.8454733672124977,
+              "median_rank": 1.0
+            },
+            "short": {
+              "n": 28,
+              "recall@1": 0.6071428571428571,
+              "recall@5": 0.8928571428571429,
+              "recall@10": 0.9285714285714286,
+              "mrr": 0.7300159984942595,
+              "median_rank": 1.0
+            }
+          },
+          "concept_group": {
+            "has_shared_concept": {
+              "n": 198,
+              "recall@1": 0.7525252525252525,
+              "recall@5": 0.9595959595959596,
+              "recall@10": 0.9747474747474747,
+              "mrr": 0.8455757461686315,
+              "median_rank": 1.0
+            }
+          }
+        }
+      }
+    },
+    "test": {
+      "n_candidates": 200,
+      "i2t": {
+        "recall@1": 0.805,
+        "recall@5": 0.965,
+        "recall@10": 0.99,
+        "mrr": 0.8726579457364341,
+        "median_rank": 1.0,
+        "bootstrap": {
+          "recall@1": {
+            "point": 0.805,
+            "lo": 0.745,
+            "hi": 0.865
+          },
+          "recall@5": {
+            "point": 0.965,
+            "lo": 0.935,
+            "hi": 0.99
+          },
+          "recall@10": {
+            "point": 0.99,
+            "lo": 0.975,
+            "hi": 1.0
+          },
+          "mrr": {
+            "point": 0.8726579457364342,
+            "lo": 0.8328853359173124,
+            "hi": 0.9119496124031009
+          }
+        }
+      },
+      "t2i": {
+        "recall@1": 0.81,
+        "recall@5": 0.975,
+        "recall@10": 0.99,
+        "mrr": 0.878989706471649,
+        "median_rank": 1.0,
+        "bootstrap": {
+          "recall@1": {
+            "point": 0.81,
+            "lo": 0.755,
+            "hi": 0.87
+          },
+          "recall@5": {
+            "point": 0.975,
+            "lo": 0.95,
+            "hi": 0.995
+          },
+          "recall@10": {
+            "point": 0.99,
+            "lo": 0.975,
+            "hi": 1.0
+          },
+          "mrr": {
+            "point": 0.8789897064716489,
+            "lo": 0.841228953783477,
+            "hi": 0.919244623655914
+          }
+        }
+      },
+      "i2t_minus_t2i_paired": {
+        "recall@1": {
+          "diff": -0.005,
+          "lo": -0.06,
+          "hi": 0.045
+        },
+        "recall@5": {
+          "diff": -0.01,
+          "lo": -0.035,
+          "hi": 0.01
+        },
+        "recall@10": {
+          "diff": 0.0,
+          "lo": 0.0,
+          "hi": 0.0
+        }
+      },
+      "negative_audit": {
+        "positive": {
+          "n": 200,
+          "mean": 0.4531574061512947,
+          "std": 0.045915346546329415,
+          "p05": 0.3795417442917824,
+          "p50": 0.45460687577724457,
+          "p95": 0.5296055436134338,
+          "min": 0.2760794758796692,
+          "max": 0.5753384232521057
+        },
+        "clean_negative": {
+          "n": 39654,
+          "mean": 0.14015141604652315,
+          "std": 0.0889965463314339,
+          "p05": 0.004774081520736221,
+          "p50": 0.13393326103687286,
+          "p95": 0.29974992871284467,
+          "min": -0.20995789766311646,
+          "max": 0.518633246421814
+        },
+        "ambiguous_negative": {
+          "n": 146,
+          "mean": 0.33948739490484536,
+          "std": 0.0723627255247983,
+          "p05": 0.2238447368144989,
+          "p50": 0.34409330785274506,
+          "p95": 0.4511522352695465,
+          "min": 0.105839304625988,
+          "max": 0.542235255241394
+        },
+        "auroc_clean": 0.9975059262621677,
+        "auroc_all_offdiag": 0.997197487437186,
+        "n_pairs_total": 40000,
+        "n_positive": 200,
+        "n_clean_negative": 39654,
+        "n_ambiguous_pair": 146,
+        "ambiguous_exclusion_rule": {
+          "caption_containment_ge": 0.6,
+          "image_phash_hamming_lt": 10
+        }
+      },
+      "stratified": {
+        "i2t": {
+          "modality_proxy": {
+            "computed-tomography": {
+              "n": 64,
+              "recall@1": 0.8125,
+              "recall@5": 0.96875,
+              "recall@10": 0.984375,
+              "mrr": 0.8778373304263567,
+              "median_rank": 1.0
+            },
+            "histopathology": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "magnetic-resonance": {
+              "n": 23,
+              "recall@1": 0.9130434782608695,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.9492753623188406,
+              "median_rank": 1.0
+            },
+            "multimodal-fusion": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "nuclear-medicine": {
+              "n": 3,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "photograph-clinical": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "ultrasound": {
+              "n": 15,
+              "recall@1": 0.8666666666666667,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.9166666666666666,
+              "median_rank": 1.0
+            },
+            "unknown": {
+              "n": 47,
+              "recall@1": 0.7021276595744681,
+              "recall@5": 0.9361702127659575,
+              "recall@10": 1.0,
+              "mrr": 0.8088652482269504,
+              "median_rank": 1.0
+            },
+            "x-ray": {
+              "n": 45,
+              "recall@1": 0.8,
+              "recall@5": 0.9555555555555556,
+              "recall@10": 0.9777777777777777,
+              "mrr": 0.8611111111111112,
+              "median_rank": 1.0
+            }
+          },
+          "caption_length_band": {
+            "long": {
+              "n": 83,
+              "recall@1": 0.8313253012048193,
+              "recall@5": 0.9759036144578314,
+              "recall@10": 1.0,
+              "mrr": 0.8884538152610443,
+              "median_rank": 1.0
+            },
+            "medium": {
+              "n": 88,
+              "recall@1": 0.8068181818181818,
+              "recall@5": 0.9772727272727273,
+              "recall@10": 0.9886363636363636,
+              "mrr": 0.8773476039464412,
+              "median_rank": 1.0
+            },
+            "short": {
+              "n": 29,
+              "recall@1": 0.7241379310344828,
+              "recall@5": 0.896551724137931,
+              "recall@10": 0.9655172413793104,
+              "mrr": 0.8132183908045977,
+              "median_rank": 1.0
+            }
+          },
+          "concept_group": {
+            "has_shared_concept": {
+              "n": 200,
+              "recall@1": 0.805,
+              "recall@5": 0.965,
+              "recall@10": 0.99,
+              "mrr": 0.8726579457364341,
+              "median_rank": 1.0
+            }
+          }
+        },
+        "t2i": {
+          "modality_proxy": {
+            "computed-tomography": {
+              "n": 64,
+              "recall@1": 0.796875,
+              "recall@5": 0.96875,
+              "recall@10": 0.984375,
+              "mrr": 0.8693670742753623,
+              "median_rank": 1.0
+            },
+            "histopathology": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "magnetic-resonance": {
+              "n": 23,
+              "recall@1": 0.8695652173913043,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.9275362318840579,
+              "median_rank": 1.0
+            },
+            "multimodal-fusion": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "nuclear-medicine": {
+              "n": 3,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "photograph-clinical": {
+              "n": 1,
+              "recall@1": 1.0,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 1.0,
+              "median_rank": 1.0
+            },
+            "ultrasound": {
+              "n": 15,
+              "recall@1": 0.8666666666666667,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.9022222222222223,
+              "median_rank": 1.0
+            },
+            "unknown": {
+              "n": 47,
+              "recall@1": 0.7872340425531915,
+              "recall@5": 1.0,
+              "recall@10": 1.0,
+              "mrr": 0.8705673758865248,
+              "median_rank": 1.0
+            },
+            "x-ray": {
+              "n": 45,
+              "recall@1": 0.7777777777777778,
+              "recall@5": 0.9333333333333333,
+              "recall@10": 0.9777777777777777,
+              "mrr": 0.8527803379416282,
+              "median_rank": 1.0
+            }
+          },
+          "caption_length_band": {
+            "long": {
+              "n": 83,
+              "recall@1": 0.8313253012048193,
+              "recall@5": 0.9879518072289156,
+              "recall@10": 1.0,
+              "mrr": 0.8964859437751004,
+              "median_rank": 1.0
+            },
+            "medium": {
+              "n": 88,
+              "recall@1": 0.8181818181818182,
+              "recall@5": 0.9772727272727273,
+              "recall@10": 0.9886363636363636,
+              "mrr": 0.8847426124600037,
+              "median_rank": 1.0
+            },
+            "short": {
+              "n": 29,
+              "recall@1": 0.7241379310344828,
+              "recall@5": 0.9310344827586207,
+              "recall@10": 0.9655172413793104,
+              "mrr": 0.8114571746384872,
+              "median_rank": 1.0
+            }
+          },
+          "concept_group": {
+            "has_shared_concept": {
+              "n": 200,
+              "recall@1": 0.81,
+              "recall@5": 0.975,
+              "recall@10": 0.99,
+              "mrr": 0.878989706471649,
+              "median_rank": 1.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

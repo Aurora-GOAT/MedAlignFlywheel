@@ -1,0 +1,81 @@
+{
+  "device": "cuda",
+  "env": {
+    "python_version": "3.10.7",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "machine": "AMD64",
+    "torch_version": "1.13.1+cu116",
+    "torch_cuda_compiled": "11.6",
+    "torch_cudnn": 8302,
+    "numpy_version": "1.26.4",
+    "device_used": "cuda",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce GTX 1660 Ti",
+    "gpu_capability": [
+      7,
+      5
+    ],
+    "gpu_total_mem_mb": 6442.1
+  },
+  "fingerprint": {
+    "official_hf_id": "microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+    "arch_version": "medalign-biomedclip-torch-v1.1",
+    "weight_file": "data\\external\\models\\biomedclip\\open_clip_pytorch_model.bin",
+    "weight_bytes": 783705670,
+    "weight_sha256": "52cc993c5c5ff962bd0c60931874bc001e7e9b41666a385530f4a036294576be",
+    "n_tensors_in_checkpoint": 352,
+    "n_parameters_loaded": 195706113,
+    "context_length": 256,
+    "image_size": 224,
+    "embed_dim": 512,
+    "load_mode": "strict=True, zero missing/unexpected enforced",
+    "dropped_non_parameter_buffers": [
+      "text.transformer.embeddings.position_ids"
+    ],
+    "position_embeddings_resized": "512 -> 256 (aligned to open_clip_config.context_length)"
+  },
+  "tokenizer_sample": [
+    "chest",
+    "x",
+    "-",
+    "ray",
+    "showing",
+    "bilateral",
+    "pleural",
+    "effusion",
+    "."
+  ],
+  "image_files": [
+    "ROCOv2_2023_test_000537.jpg",
+    "ROCOv2_2023_test_000538.jpg",
+    "ROCOv2_2023_test_000539.jpg",
+    "ROCOv2_2023_test_000540.jpg"
+  ],
+  "image_emb_shape": [
+    4,
+    512
+  ],
+  "image_norm_mean": 80.19205474853516,
+  "zero_shot_probe": [
+    {
+      "text": "chest x-ray radiograph of the thorax",
+      "score": 0.40949952602386475
+    },
+    {
+      "text": "T2 weighted magnetic resonance image of the brain",
+      "score": 0.24450035393238068
+    },
+    {
+      "text": "axial computed tomography of the abdomen",
+      "score": 0.23210197687149048
+    },
+    {
+      "text": "histopathology micrograph with hematoxylin and eosin",
+      "score": 0.2118314951658249
+    },
+    {
+      "text": "a banana",
+      "score": 0.16157668828964233
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "image": {
+    "min_short_side": 64,
+    "min_short_side_warn": 128,
+    "min_bytes": 2048,
+    "min_gray_std": 3.0,
+    "min_gray_std_warn": 8.0,
+    "min_unique_levels": 8,
+    "max_aspect_ratio": 8.0,
+    "max_aspect_ratio_hard": 15.0
+  },
+  "text": {
+    "min_tokens_reject": 3,
+    "min_tokens_warn": 6,
+    "max_nonascii": 0.2,
+    "max_digit_ratio": 0.35,
+    "max_repeat_same_token_ratio": 0.45
+  },
+  "dedup": {
+    "hamming_max": 6,
+    "text_jaccard_min": 0.8,
+    "text_containment_min": 0.95
+  },
+  "_notes": {
+    "changes_vs_previous": "initial version for this project",
+    "disclaimer": "all thresholds are literal, auditable rules; not medical judgments"
+  }
+}

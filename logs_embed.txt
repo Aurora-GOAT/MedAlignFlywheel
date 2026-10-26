@@ -1,0 +1,7 @@
+[device] cuda  [seed] {'python': 20260701, 'numpy': 20260701, 'torch': 20260701}
+Traceback (most recent call last):
+  File "D:\PQY\Five\post\实习、工作\找工作\简历合集\蚂蚁\MedAlignFlywheel\scripts\run_p2_extract_embeddings.py", line 122, in <module>
+    if __name__ == "__main__":
+  File "D:\PQY\Five\post\实习、工作\找工作\简历合集\蚂蚁\MedAlignFlywheel\scripts\run_p2_extract_embeddings.py", line 53, in main
+    pre = cfg.get("preprocess_cfg", {})
+NameError: name 'ImageTransform' is not defined

@@ -1,0 +1,32 @@
+
+== 1) 评测链路修复 (AUROC / recall@k) ==
+  PASS  auroc_pos_gt_neg~1  auroc=1.0000
+  PASS  auroc_pos_lt_neg~0  auroc=0.0000
+  PASS  recall@1=0.25  =0.25
+  PASS  recall@3=0.75  =0.75
+  PASS  bootstrap_ci_covers_point  [1.000,1.000] pt=1.000
+
+== 2) P1 对齐头 (step-0 恒等 / 梯度数值) ==
+  PASS  adapter_step0_image_identity  maxdiff=1.49e-08
+  PASS  adapter_step0_text_identity  maxdiff=1.49e-08
+  PASS  adapter_loss_finite  loss=2.0794
+  PASS  adapter_grads_finite  
+  PASS  adapter_grads_nonzero  
+
+== 3) P1 质量算子 (文本) ==
+  PASS  caption_missing_detected  ['CAPTION_MISSING']
+  PASS  caption_placeholder_detected  ['CAPTION_PLACEHOLDER', 'CAPTION_TOO_SHORT', 'CAPTION_REPETITIVE']
+  PASS  caption_clean_no_false_positive  ['CAPTION_OK']
+
+== 4) BiomedCLIP 严格加载 / 前向确定性 (CPU) ==
+  PASS  model_strict_load_params>1e8  n=195,902,721
+  PASS  model_forward_deterministic  maxdiff=0.00e+00
+
+== 5) 审计不变量 (词表/特殊token/独立测试集/冻结配置) ==
+  PASS  vocab_byte_identical_to_official  7b36651908a88bc3
+  PASS  special_token_ids_match_official  PAD=0 UNK=1 CLS=2 SEP=3
+  PASS  independent_testset_zero_overlap_with_dev  overlap=0 n_ind=1000
+  PASS  old_holdout_contamination_recorded  旧 holdout 与 hard_cases 重叠 14 条 → 已废弃，不作为未见数据
+  PASS  frozen_config_manifest_hash_matches  配置在评价前冻结，且与被测清单一致
+
+TOTAL: 20 passed, 0 failed

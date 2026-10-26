@@ -1,0 +1,104 @@
+{
+  "dataset_id": "eltorio/ROCOv2-radiology",
+  "doi": "10.57967/hf/3489",
+  "revision_claimed_in_official_readme": "dataset repository 'Revision 5d66908' (per ROCOv2 official README)",
+  "access_route": "HuggingFace datasets-server /rows API (official entry recommended by ROCOv2 README)",
+  "license": {
+    "dataset_license": "CC BY-NC-SA 4.0",
+    "source_images": "PMC Open Access Subset (CC BY / CC BY-NC per upstream paper)",
+    "computed_fields": "captions concepts extracted with MedCAT v1.10.0 (ROCOv2 authors)",
+    "redistribution_note": "NonCommercial + ShareAlike. 本项目仅下载子集用于本地评估，不对外重新分发整套图像；HTML 演示只引用本地路径与出处。"
+  },
+  "data_nature_warning": "图注来自开放获取医学论文的图注，不是医院真实影像诊断报告；不得改称。",
+  "ingest_config": {
+    "out_root": ".",
+    "seed": 20260701,
+    "n_blocks_train": 20,
+    "take_train": 30,
+    "n_blocks_val": 8,
+    "take_val": 25,
+    "n_blocks_test": 8,
+    "take_test": 25,
+    "workers": 12
+  },
+  "sampling_plans": {
+    "train": {
+      "split": "train",
+      "num_rows_total": 59962,
+      "block_starts": [
+        1067,
+        5506,
+        6027,
+        9602,
+        12473,
+        17341,
+        18284,
+        21939,
+        24160,
+        29275,
+        31611,
+        34047,
+        38188,
+        39933,
+        42636,
+        45488,
+        49982,
+        53836,
+        54733,
+        59319
+      ],
+      "block_size": 30,
+      "take_per_block": 30,
+      "seed": 20260701
+    },
+    "validation": {
+      "split": "validation",
+      "num_rows_total": 9904,
+      "block_starts": [
+        533,
+        1251,
+        2775,
+        3947,
+        6118,
+        6326,
+        7890,
+        8738
+      ],
+      "block_size": 25,
+      "take_per_block": 25,
+      "seed": 20260701
+    },
+    "test": {
+      "split": "test",
+      "num_rows_total": 9927,
+      "block_starts": [
+        533,
+        1254,
+        2781,
+        3956,
+        6130,
+        6340,
+        7907,
+        8758
+      ],
+      "block_size": 25,
+      "take_per_block": 25,
+      "seed": 20260701
+    }
+  },
+  "n_rows_requested": 1000,
+  "n_rows_fetched": 1000,
+  "n_unique_samples": 1000,
+  "duplicates_in_source": [],
+  "n_images_downloaded": 1000,
+  "n_images_failed": 0,
+  "failed_images": [],
+  "ingested_at_utc": "2026-10-25T18:40:45.801868+00:00",
+  "columns_available_in_source": [
+    "image",
+    "image_id",
+    "caption",
+    "cui"
+  ],
+  "columns_absent_note": "HF 版本的记录中不含独立的 modality / body_region 字段，也不含论文 PMID/PMC 链接。本项目的模态标签只能由规则从图注推断，并明确标注为数据质量代理指标（见 docs/DATA_CARD.md）。"
+}

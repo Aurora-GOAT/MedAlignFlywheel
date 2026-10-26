@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 360" font-family="-apple-system,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4a5568"/>
+    </marker>
+    <style>
+      .box{fill:#fff;stroke:#2b6cb0;stroke-width:2;rx:10}
+      .p0{stroke:#dd6b20}.p1{stroke:#2b6cb0}.p2{stroke:#2f855a}.p3{stroke:#805ad5}.p4{stroke:#c53030}
+      .t{font-size:15px;font-weight:700;fill:#1a202c}
+      .d{font-size:11px;fill:#4a5568}
+      .stage{font-size:12px;font-weight:700;fill:#718096}
+    </style>
+  </defs>
+
+  <!-- stage headers -->
+  <text x="90"  y="34" class="stage" text-anchor="middle">P0 摄取</text>
+  <text x="290" y="34" class="stage" text-anchor="middle">P1 质量</text>
+  <text x="490" y="34" class="stage" text-anchor="middle">P2 评测</text>
+  <text x="700" y="34" class="stage" text-anchor="middle">P3 飞轮</text>
+  <text x="920" y="34" class="stage" text-anchor="middle">P4 对齐头</text>
+
+  <!-- boxes -->
+  <rect class="box p0" x="20"  y="60" width="140" height="120" rx="10"/>
+  <rect class="box p1" x="220" y="60" width="140" height="120" rx="10"/>
+  <rect class="box p2" x="420" y="60" width="140" height="120" rx="10"/>
+  <rect class="box p3" x="630" y="60" width="140" height="120" rx="10"/>
+  <rect class="box p4" x="850" y="60" width="150" height="120" rx="10"/>
+
+  <!-- P0 -->
+  <text x="90" y="92" class="t" text-anchor="middle">ROCOv2 摄取</text>
+  <text x="90" y="118" class="d" text-anchor="middle">HF rows 抽样</text>
+  <text x="90" y="135" class="d" text-anchor="middle">SHA256/许可</text>
+  <text x="90" y="152" class="d" text-anchor="middle">跨集泄漏检查</text>
+  <text x="90" y="169" class="d" text-anchor="middle">1000→990</text>
+
+  <!-- P1 -->
+  <text x="290" y="92" class="t" text-anchor="middle">质量算子×6</text>
+  <text x="290" y="118" class="d" text-anchor="middle">图像/文本/配对</text>
+  <text x="290" y="135" class="d" text-anchor="middle">CUI/近重复/血缘</text>
+  <text x="290" y="152" class="d" text-anchor="middle">raw/clean/reject</text>
+  <text x="290" y="169" class="d" text-anchor="middle">keep 990</text>
+
+  <!-- P2 -->
+  <text x="490" y="92" class="t" text-anchor="middle">BiomedCLIP</text>
+  <text x="490" y="118" class="d" text-anchor="middle">真实权重严格加载</text>
+  <text x="490" y="135" class="d" text-anchor="middle">I2T/T2I R@K</text>
+  <text x="490" y="152" class="d" text-anchor="middle">MRR/AUROC</text>
+  <text x="490" y="169" class="d" text-anchor="middle">冻结 test</text>
+
+  <!-- P3 -->
+  <text x="700" y="92" class="t" text-anchor="middle">数据飞轮</text>
+  <text x="700" y="118" class="d" text-anchor="middle">难例挖掘</text>
+  <text x="700" y="135" class="d" text-anchor="middle">难负例构造</text>
+  <text x="700" y="152" class="d" text-anchor="middle">A/B/C/D 选择</text>
+  <text x="700" y="169" class="d" text-anchor="middle">仅 train/val</text>
+
+  <!-- P4 -->
+  <text x="925" y="92" class="t" text-anchor="middle">对齐头</text>
+  <text x="925" y="118" class="d" text-anchor="middle">冻结编码器</text>
+  <text x="925" y="135" class="d" text-anchor="middle">小对齐头训练</text>
+  <text x="925" y="152" class="d" text-anchor="middle">同预算对照</text>
+  <text x="925" y="169" class="d" text-anchor="middle">已跑(诚实)</text>
+
+  <!-- arrows -->
+  <line x1="160" y1="120" x2="218" y2="120" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="360" y1="120" x2="418" y2="120" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="560" y1="120" x2="618" y2="120" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="770" y1="120" x2="848" y2="120" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- data flow back note -->
+  <path d="M925,210 C925,300 90,300 90,210" fill="none" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="540" y="300" class="d" text-anchor="middle">飞轮闭环：P3 选择的高质量/高价值子集 回流驱动 下一轮 数据生产（虚线）</text>
+
+  <text x="540" y="340" class="d" text-anchor="middle">* P4 已在本地 GPU 真实运行：冻结编码器+200 样本小对齐头会过拟合拖累检索，选择增益需更大数据/全参微调才显形。</text>
+</svg>
